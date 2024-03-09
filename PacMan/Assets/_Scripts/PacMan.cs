@@ -6,8 +6,10 @@ public class PacMan : MonoBehaviour
 {
     new Rigidbody rigidbody;
     Vector2 inputMov, inputRot;
-    public float caminar = 10f, sensibilidadMouse = 1f, rotacionX;
+    float caminar = 10f, sensibilidadMouse = 1f, rotacionX;
     Transform camara;
+
+    public int puntuacion = 0;
 
     private void Start()
     {
@@ -35,5 +37,14 @@ public class PacMan : MonoBehaviour
         rotacionX -= inputRot.y;
         rotacionX = Mathf.Clamp(rotacionX, -50f, 50f);
         camara.localRotation = Quaternion.Euler(rotacionX, 0, 0); //Camara arriba y abajo
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Punto")) 
+        {
+            puntuacion += 10;
+            Destroy(other.gameObject);
+        }
     }
 }
