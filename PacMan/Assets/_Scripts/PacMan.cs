@@ -46,5 +46,16 @@ public class PacMan : MonoBehaviour
             puntuacion += 10;
             Destroy(other.gameObject);
         }
+
+        else if(other.CompareTag("Portal Derecho"))
+        {
+            gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
+        }
+
+        else if (other.CompareTag("Portal Izquierdo"))
+        {
+            gameObject.transform.position = new Vector3(23.5f, -0.5f, 1f);
+        }
+
     }
 }
