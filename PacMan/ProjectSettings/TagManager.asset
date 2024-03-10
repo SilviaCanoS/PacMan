@@ -7,6 +7,10 @@ TagManager:
   - Punto
   - Portal Izquierdo
   - Portal Derecho
+  - Fantasma Rojo
+  - Fantasma Rosa
+  - Famtasma Azul
+  - Fantasma Naranja
   layers:
   - Default
   - TransparentFX
