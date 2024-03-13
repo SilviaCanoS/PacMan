@@ -6,12 +6,6 @@ using UnityEngine.SceneManagement;
 public class Principal : MonoBehaviour
 {
     public GameObject canvasPrincipal, canvasPausa, canvasPuntuacion;
-    public TMPro.TMP_Text textPuntuacion;
-
-    private void OnEnable()
-    {
-        //textoRecursos.text = $"Recursos: {adminJuego.recursos}";
-    }
 
     public void MostrarPausa()
     {
