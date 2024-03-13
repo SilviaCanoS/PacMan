@@ -15,15 +15,23 @@ public class PacMan : MonoBehaviour
     AudioSource sourceComerPuntos;
 
     public int puntuacion = 0;
+    public Transform transformPuntuacion;
+    public TMPro.TMP_Text textPuntuacion;
+    public Puntaciones puntaciones;
 
     private void Start()
     {
+        transformPuntuacion = GameObject.Find("TextPuntuacion").transform;
+        textPuntuacion = transformPuntuacion.GetComponent<TMPro.TMP_Text>();
+        //puntaciones.Cargar();
+
         rigidbody = GetComponent<Rigidbody>();
         camara = transform.GetChild(0); //Toma al primer hijo
         rotacionX = camara.eulerAngles.x;
 
         sonidoComerPuntos = GameObject.Find("ComerPunto");
         sourceComerPuntos = sonidoComerPuntos.GetComponent<AudioSource>();
+
     }
 
     private void Update()
@@ -53,6 +61,13 @@ public class PacMan : MonoBehaviour
         {
             sourceComerPuntos.Play();
             puntuacion += 10;
+            if (puntuacion > puntaciones.puntos[5])
+            {
+                puntaciones.puntos[5] = puntuacion;
+                puntaciones.nombres[5] = puntaciones.nombreActual;
+            } 
+            textPuntuacion.text = puntuacion.ToString();
+            //puntaciones.Guardar();
             Destroy(other.gameObject);
         }
 
