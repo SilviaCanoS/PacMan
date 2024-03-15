@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 848066177523232281}
   - component: {fileID: 3550656786392098965}
   - component: {fileID: 6066042230419865278}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Punto
   m_TagString: Punto
   m_Icon: {fileID: 0}

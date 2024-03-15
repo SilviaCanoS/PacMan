@@ -6,30 +6,26 @@ public class FantasmasSpawner : MonoBehaviour
 {
     public GameObject rojo, prefabRojo, rosa, prefabRosa, azul, prefabAzul, naranja, prefabNaranja;
 
-    private void Update()
+    private void Start()
     {
         rojo = GameObject.Find("Fantasma Rojo");
-        if (rojo == null)
-        {
-            Instantiate<GameObject>(prefabRojo, transform.position, Quaternion.identity);
-        }
-
         rosa = GameObject.Find("Fantasma Rosa");
-        if (rosa == null)
-        {
-            Instantiate<GameObject>(prefabRosa, transform.position, Quaternion.identity);
-        }
-
         azul = GameObject.Find("Fantasma Azul");
-        if (azul == null)
-        {
-            Instantiate<GameObject>(prefabAzul, transform.position, Quaternion.identity);
-        }
-
         naranja = GameObject.Find("Fantasma Naranja");
+    }
+
+    private void Update()
+    {
+        if (rojo == null)
+            rojo = Instantiate<GameObject>(prefabRojo, transform.position, Quaternion.identity);
+        
+        if (rosa == null)
+            rosa = Instantiate<GameObject>(prefabRosa, transform.position, Quaternion.identity);
+
+        if (azul == null)
+            azul = Instantiate<GameObject>(prefabAzul, transform.position, Quaternion.identity);
+
         if (naranja == null)
-        {
-            Instantiate<GameObject>(prefabNaranja, transform.position, Quaternion.identity);
-        }
+            naranja = Instantiate<GameObject>(prefabNaranja, transform.position, Quaternion.identity);
     }
 }

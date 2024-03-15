@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PacMan : MonoBehaviour
 {
@@ -10,14 +11,18 @@ public class PacMan : MonoBehaviour
     float caminar = 10f, sensibilidadMouse = 1f, rotacionX;
     Transform camara;
 
-    public AudioClip comerPuntos;
-    GameObject sonidoComerPuntos;
-    AudioSource sourceComerPuntos;
+    public AudioClip comerPuntos, iniciarJuego;
+    GameObject sonidoComerPuntos, sonidoIniciarJuego;
+    AudioSource sourceComerPuntos, sourceIniciarJuego;
 
-    public int puntuacion = 0;
+    public int puntuacion = 0, vidas = 2, puntosRestantes, puntosTotales;
     public Transform transformPuntuacion;
     public TMPro.TMP_Text textPuntuacion;
     public Puntaciones puntaciones;
+
+    public GameObject vida1, vida2, vida3;
+
+    public bool aumentarVelocidad = false;
 
     private void Start()
     {
@@ -31,7 +36,13 @@ public class PacMan : MonoBehaviour
 
         sonidoComerPuntos = GameObject.Find("ComerPunto");
         sourceComerPuntos = sonidoComerPuntos.GetComponent<AudioSource>();
+        sonidoIniciarJuego = GameObject.Find("iniciarJuego");
+        sourceIniciarJuego = sonidoIniciarJuego.GetComponent<AudioSource>();
+        sourceIniciarJuego.Play();
+        vida1.GetComponent<Image>().color = Color.black;
 
+        puntosRestantes = GameObject.Find("Puntos").transform.childCount;
+        puntosTotales = GameObject.Find("Puntos").transform.childCount;
     }
 
     private void Update()
@@ -67,7 +78,22 @@ public class PacMan : MonoBehaviour
                 puntaciones.nombres[5] = puntaciones.nombreActual;
             } 
             textPuntuacion.text = puntuacion.ToString();
+
+            puntosRestantes--;
+            if (puntosRestantes < puntosTotales / 2) aumentarVelocidad = true;
             //puntaciones.Guardar();
+
+            other.GetComponent<MeshRenderer>().enabled = false;
+            //Destroy(other.gameObject);
+        }
+
+        else if (other.CompareTag("Fantasma"))
+        {
+            if (vidas == 2) vida2.GetComponent<Image>().color = Color.black;
+            if (vidas == 1) vida3.GetComponent<Image>().color = Color.black;
+            vidas--;
+            sourceIniciarJuego.Play();
+            gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
             Destroy(other.gameObject);
         }
 
