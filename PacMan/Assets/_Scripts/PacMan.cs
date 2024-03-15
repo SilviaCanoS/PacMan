@@ -12,9 +12,9 @@ public class PacMan : MonoBehaviour
     float caminar = 10f, sensibilidadMouse = 1f, rotacionX;
     Transform camara;
 
-    public AudioClip comerPuntos, iniciarJuego, pacManMuere;
-    GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere;
-    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere;
+    public AudioClip comerPuntos, iniciarJuego, pacManMuere, pacManCome;
+    GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoPacManCome;
+    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourcePacManCome;
 
     public int puntuacion = 0, vidas = 2, puntosRestantes, puntosTotales;
     public Transform transformPuntuacion;
@@ -24,6 +24,8 @@ public class PacMan : MonoBehaviour
     public GameObject vida1, vida2, vida3;
 
     public bool aumentarVelocidad = false;
+
+    public Material azulMarino, rojo, rosa, azul, naranja;
 
     private void Start()
     {
@@ -43,6 +45,8 @@ public class PacMan : MonoBehaviour
         vida1.GetComponent<Image>().color = Color.black;
         sonidoPacManMuere = GameObject.Find("PacManMuere");
         sourcePacManMuere = sonidoPacManMuere.GetComponent<AudioSource>();
+        sonidoPacManCome = GameObject.Find("PacManCome");
+        sourcePacManCome = sonidoPacManCome.GetComponent<AudioSource>();
 
         puntosRestantes = GameObject.Find("Puntos").transform.childCount;
         puntosTotales = GameObject.Find("Puntos").transform.childCount;
@@ -84,6 +88,33 @@ public class PacMan : MonoBehaviour
 
             puntosRestantes--;
             if (puntosRestantes < puntosTotales / 2) aumentarVelocidad = true;
+
+            if(other.transform.localScale.x == 1)
+            {
+                puntuacion += 10;
+                sourcePacManCome.Play();
+                var aux = GameObject.Find("Fantasma Rojo").transform.GetChild(0);
+                aux.GetComponent<MeshRenderer>().material = azulMarino;
+                aux = GameObject.Find("Fantasma Rojo").transform.GetChild(1);
+                aux.GetComponent<MeshRenderer>().material = azulMarino;
+
+                aux = GameObject.Find("Fantasma Rosa").transform.GetChild(0);
+                aux.GetComponent<MeshRenderer>().material = azulMarino;
+                aux = GameObject.Find("Fantasma Rosa").transform.GetChild(1);
+                aux.GetComponent<MeshRenderer>().material = azulMarino;
+
+                aux = GameObject.Find("Fantasma Azul").transform.GetChild(0);
+                aux.GetComponent<MeshRenderer>().material = azulMarino;
+                aux = GameObject.Find("Fantasma Azul").transform.GetChild(1);
+                aux.GetComponent<MeshRenderer>().material = azulMarino;
+
+                aux = GameObject.Find("Fantasma Naranja").transform.GetChild(0);
+                aux.GetComponent<MeshRenderer>().material = azulMarino;
+                aux = GameObject.Find("Fantasma Naranja").transform.GetChild(1);
+                aux.GetComponent<MeshRenderer>().material = azulMarino;
+
+                Invoke("DevolverColor", 10);
+            }
             //puntaciones.Guardar();
 
             other.GetComponent<MeshRenderer>().enabled = false;
@@ -115,5 +146,28 @@ public class PacMan : MonoBehaviour
             gameObject.transform.position = new Vector3(23.5f, -0.5f, 1f);
         }
 
+    }
+
+    public void DevolverColor()
+    {
+        var aux = GameObject.Find("Fantasma Rojo").transform.GetChild(0);
+        aux.GetComponent<MeshRenderer>().material = rojo;
+        aux = GameObject.Find("Fantasma Rojo").transform.GetChild(1);
+        aux.GetComponent<MeshRenderer>().material = rojo;
+
+        aux = GameObject.Find("Fantasma Rosa").transform.GetChild(0);
+        aux.GetComponent<MeshRenderer>().material = rosa;
+        aux = GameObject.Find("Fantasma Rosa").transform.GetChild(1);
+        aux.GetComponent<MeshRenderer>().material = rosa;
+
+        aux = GameObject.Find("Fantasma Azul").transform.GetChild(0);
+        aux.GetComponent<MeshRenderer>().material = azul;
+        aux = GameObject.Find("Fantasma Azul").transform.GetChild(1);
+        aux.GetComponent<MeshRenderer>().material = azul;
+
+        aux = GameObject.Find("Fantasma Naranja").transform.GetChild(0);
+        aux.GetComponent<MeshRenderer>().material = naranja;
+        aux = GameObject.Find("Fantasma Naranja").transform.GetChild(1);
+        aux.GetComponent<MeshRenderer>().material = naranja;
     }
 }

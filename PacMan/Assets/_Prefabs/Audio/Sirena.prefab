@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6353055628544415824
+--- !u!1 &8197294367697004841
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9220823495026425939}
-  - component: {fileID: 5851649699690136328}
+  - component: {fileID: 1769688413551423119}
+  - component: {fileID: 63970841818259120}
   m_Layer: 0
-  m_Name: PacManMuere
+  m_Name: Sirena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9220823495026425939
+--- !u!4 &1769688413551423119
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6353055628544415824}
+  m_GameObject: {fileID: 8197294367697004841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,17 +32,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &5851649699690136328
+--- !u!82 &63970841818259120
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6353055628544415824}
+  m_GameObject: {fileID: 8197294367697004841}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4aa938080cc64994685d203c7db2eb40, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a28d0f9c2422a5840a114e5fd3f044d9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

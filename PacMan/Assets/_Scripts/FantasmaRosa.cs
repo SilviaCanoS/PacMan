@@ -11,6 +11,10 @@ public class FantasmaRosa : MonoBehaviour
     private void Start()
     {
         jugador = GameObject.Find("PacMan").transform;
+    }
+
+    private void Update()
+    {
         GetComponent<NavMeshAgent>().SetDestination(jugador.position);
     }
 
