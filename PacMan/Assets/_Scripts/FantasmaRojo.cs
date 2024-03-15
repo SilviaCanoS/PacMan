@@ -12,10 +12,17 @@ public class FantasmaRojo : MonoBehaviour
     public Transform jugador;
     public PacMan pacMan;
 
+    public GameObject puntos;
+    public int hijos;
+    System.Random aleatorio = new System.Random();
+
     private void Start()
     {
         jugador = GameObject.Find("PacMan").transform;
         //GetComponent<NavMeshAgent>().SetDestination(jugador.position);
+
+        puntos = GameObject.Find("Puntos");
+        hijos = puntos.transform.childCount;
     }
 
     void Update()
@@ -30,6 +37,11 @@ public class FantasmaRojo : MonoBehaviour
             transform.LookAt(posJugador); //mira al jugador
             transform.position = Vector3.MoveTowards(transform.position, posJugador,
                 velocidad * Time.deltaTime); //Sigue al jugador
+        }
+        else
+        {
+            var buscar = puntos.transform.GetChild(aleatorio.Next(hijos));
+            GetComponent<NavMeshAgent>().SetDestination(buscar.transform.position);
         }
     }
 
