@@ -6013,7 +6013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6749312396268777674, guid: 0ecce51be829ed2479d0e930be578762, type: 3}
       propertyPath: rangoAlerta
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8723011939053886441, guid: 0ecce51be829ed2479d0e930be578762, type: 3}
       propertyPath: m_Name

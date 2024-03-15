@@ -11,9 +11,16 @@ public class FantasmaAzul : MonoBehaviour
     bool alerta;
     public Transform jugador;
 
+    public GameObject puntos;
+    public int hijos;
+    System.Random aleatorio = new System.Random();
+
     private void Start()
     {
         jugador = GameObject.Find("PacMan").transform;
+
+        puntos = GameObject.Find("Puntos");
+        hijos = puntos.transform.childCount;
     }
 
     void Update()
@@ -26,6 +33,11 @@ public class FantasmaAzul : MonoBehaviour
             transform.LookAt(posJugador); //mira al jugador
             transform.position = Vector3.MoveTowards(transform.position, posJugador,
                 velocidad * Time.deltaTime); //Sigue al jugador
+        }
+        else
+        {
+            var buscar = puntos.transform.GetChild(aleatorio.Next(hijos));
+            GetComponent<NavMeshAgent>().SetDestination(buscar.transform.position);
         }
     }
 
