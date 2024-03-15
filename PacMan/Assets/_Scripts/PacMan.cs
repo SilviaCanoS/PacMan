@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PacMan : MonoBehaviour
@@ -11,9 +12,9 @@ public class PacMan : MonoBehaviour
     float caminar = 10f, sensibilidadMouse = 1f, rotacionX;
     Transform camara;
 
-    public AudioClip comerPuntos, iniciarJuego;
-    GameObject sonidoComerPuntos, sonidoIniciarJuego;
-    AudioSource sourceComerPuntos, sourceIniciarJuego;
+    public AudioClip comerPuntos, iniciarJuego, pacManMuere;
+    GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere;
+    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere;
 
     public int puntuacion = 0, vidas = 2, puntosRestantes, puntosTotales;
     public Transform transformPuntuacion;
@@ -40,6 +41,8 @@ public class PacMan : MonoBehaviour
         sourceIniciarJuego = sonidoIniciarJuego.GetComponent<AudioSource>();
         sourceIniciarJuego.Play();
         vida1.GetComponent<Image>().color = Color.black;
+        sonidoPacManMuere = GameObject.Find("PacManMuere");
+        sourcePacManMuere = sonidoPacManMuere.GetComponent<AudioSource>();
 
         puntosRestantes = GameObject.Find("Puntos").transform.childCount;
         puntosTotales = GameObject.Find("Puntos").transform.childCount;
@@ -89,12 +92,17 @@ public class PacMan : MonoBehaviour
 
         else if (other.CompareTag("Fantasma"))
         {
+            sourcePacManMuere.Play();
             if (vidas == 2) vida2.GetComponent<Image>().color = Color.black;
-            if (vidas == 1) vida3.GetComponent<Image>().color = Color.black;
+            if (vidas == 1)
+            {
+                vida3.GetComponent<Image>().color = Color.black;
+                int escenaActual = SceneManager.GetActiveScene().buildIndex;
+                SceneManager.LoadScene(escenaActual);
+            }
             vidas--;
             sourceIniciarJuego.Play();
             gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
-            Destroy(other.gameObject);
         }
 
         else if(other.CompareTag("Portal Derecho"))
