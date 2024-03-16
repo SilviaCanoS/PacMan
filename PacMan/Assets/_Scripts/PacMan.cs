@@ -117,8 +117,8 @@ public class PacMan : MonoBehaviour
             }
             //puntaciones.Guardar();
 
-            other.GetComponent<MeshRenderer>().enabled = false;
-            //Destroy(other.gameObject);
+            //other.GetComponent<MeshRenderer>().enabled = false;
+            Destroy(other.gameObject);
         }
 
         else if (other.CompareTag("Fantasma"))

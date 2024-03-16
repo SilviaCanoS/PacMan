@@ -17,17 +17,4 @@ public class FantasmaRosa : MonoBehaviour
     {
         GetComponent<NavMeshAgent>().SetDestination(jugador.position);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Portal Derecho"))
-        {
-            gameObject.transform.position = new Vector3(-23.5f, 0, 1f);
-        }
-
-        else if (other.CompareTag("Portal Izquierdo"))
-        {
-            gameObject.transform.position = new Vector3(23.5f, 0, 1f);
-        }
-    }
 }
