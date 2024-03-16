@@ -12,9 +12,9 @@ public class PacMan : MonoBehaviour
     float caminar = 10f, sensibilidadMouse = 1f, rotacionX;
     Transform camara;
 
-    public AudioClip comerPuntos, iniciarJuego, pacManMuere, pacManCome;
-    GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoPacManCome;
-    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourcePacManCome;
+    public AudioClip comerPuntos, iniciarJuego, pacManMuere, efectoAzul;
+    GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul;
+    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul;
 
     public int puntuacion = 0, vidas = 2;
     public Transform transformPuntuacion;
@@ -43,8 +43,8 @@ public class PacMan : MonoBehaviour
         vida1.GetComponent<Image>().color = Color.black;
         sonidoPacManMuere = GameObject.Find("PacManMuere");
         sourcePacManMuere = sonidoPacManMuere.GetComponent<AudioSource>();
-        sonidoPacManCome = GameObject.Find("PacManCome");
-        sourcePacManCome = sonidoPacManCome.GetComponent<AudioSource>();
+        sonidoEfectoAzul = GameObject.Find("EfectoAzul");
+        sourceEfectoAzul = sonidoEfectoAzul.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -84,7 +84,7 @@ public class PacMan : MonoBehaviour
             if(other.transform.localScale.x == 1)
             {
                 puntuacion += 10;
-                sourcePacManCome.Play();
+                sourceEfectoAzul.Play();
                 var aux = GameObject.Find("Fantasma Rojo").transform.GetChild(0);
                 aux.GetComponent<MeshRenderer>().material = azulMarino;
                 aux = GameObject.Find("Fantasma Rojo").transform.GetChild(1);
@@ -154,5 +154,6 @@ public class PacMan : MonoBehaviour
         aux.GetComponent<MeshRenderer>().material = naranja;
         aux = GameObject.Find("Fantasma Naranja").transform.GetChild(1);
         aux.GetComponent<MeshRenderer>().material = naranja;
+        sourceEfectoAzul.Stop();
     }
 }
