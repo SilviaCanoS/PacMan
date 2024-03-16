@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: -8763772439581096819}
   m_Layer: 0
   m_Name: Fantasma Rojo
-  m_TagString: Fantasma
+  m_TagString: Rojo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,14 +344,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2561df787ad51c49b8cd3e449340953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  control: []
+  puntoDestino: 0
+  nav: {fileID: 0}
   rangoAlerta: 5
-  velocidad: 3
-  mitadPuntos: 0
+  jugador: {fileID: 0}
   capaJugador:
     serializedVersion: 2
     m_Bits: 64
-  jugador: {fileID: 0}
-  pacMan: {fileID: 0}
+  alerta: 0
+  referenciaPuntos: 0
+  puntosRestantes: 0
+  puntos: {fileID: 0}
 --- !u!54 &486668121526032271
 Rigidbody:
   m_ObjectHideFlags: 0

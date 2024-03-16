@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: -7327948231850815292}
   m_Layer: 0
   m_Name: Fantasma Rosa
-  m_TagString: Fantasma
+  m_TagString: Rosa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

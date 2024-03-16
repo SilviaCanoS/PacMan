@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 6536822135016953019}
   m_Layer: 0
   m_Name: Fantasma Azul
-  m_TagString: Fantasma
+  m_TagString: Azul
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,12 +202,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a45d45b20261f429b241bd0eef418c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  control: []
+  puntoDestino: 0
+  nav: {fileID: 0}
   rangoAlerta: 10
-  velocidad: 3
+  jugador: {fileID: 0}
   capaJugador:
     serializedVersion: 2
     m_Bits: 64
-  jugador: {fileID: 0}
+  alerta: 0
 --- !u!1 &2983800088042304940
 GameObject:
   m_ObjectHideFlags: 0

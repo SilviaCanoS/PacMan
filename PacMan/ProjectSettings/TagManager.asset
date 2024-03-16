@@ -9,6 +9,10 @@ TagManager:
   - Portal Derecho
   - Fantasma
   - PacMan
+  - Rojo
+  - Rosa
+  - Azul
+  - Naranja
   layers:
   - Default
   - TransparentFX
