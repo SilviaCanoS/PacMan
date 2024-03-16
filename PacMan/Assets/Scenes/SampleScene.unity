@@ -1578,18 +1578,15 @@ MonoBehaviour:
   comerPuntos: {fileID: 8318785414587130187, guid: 279df73e6bf9c5541bf24108606b1ce5, type: 3}
   iniciarJuego: {fileID: 0}
   pacManMuere: {fileID: 0}
-  pacManCome: {fileID: 0}
+  efectoAzul: {fileID: 0}
   puntuacion: 0
   vidas: 3
-  puntosRestantes: 0
-  puntosTotales: 0
   transformPuntuacion: {fileID: 553681968}
   textPuntuacion: {fileID: 553681969}
   puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
   vida1: {fileID: 423246101}
   vida2: {fileID: 253159441}
   vida3: {fileID: 1877139920}
-  aumentarVelocidad: 0
   azulMarino: {fileID: 2100000, guid: 178826b05c1e49641b6c5c246845c863, type: 2}
   rojo: {fileID: 2100000, guid: 1c66ff09e71a49e449ea6d6c449ecdd3, type: 2}
   rosa: {fileID: 2100000, guid: 26665e427d2b21c46aacbe8c7be79517, type: 2}
@@ -6082,7 +6079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6749312396268777674, guid: 0ecce51be829ed2479d0e930be578762, type: 3}
       propertyPath: rangoAlerta
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6749312396268777674, guid: 0ecce51be829ed2479d0e930be578762, type: 3}
       propertyPath: capaPuntos.m_Bits
@@ -56093,12 +56090,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 63970841818259120, guid: 1b4ae264d43fd2f4fb9047a350535b22, type: 3}
       propertyPath: Loop
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 63970841818259120, guid: 1b4ae264d43fd2f4fb9047a350535b22, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 4bceabcfceb8cc241983d4f9c2f132c0, type: 3}
+      objectReference: {fileID: 8300000, guid: fa1b5deabf826af4f8fc0f4be1698719, type: 3}
     - target: {fileID: 1769688413551423119, guid: 1b4ae264d43fd2f4fb9047a350535b22, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -56145,7 +56142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8197294367697004841, guid: 1b4ae264d43fd2f4fb9047a350535b22, type: 3}
       propertyPath: m_Name
-      value: PacManCome
+      value: EfectoAzul
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b4ae264d43fd2f4fb9047a350535b22, type: 3}
