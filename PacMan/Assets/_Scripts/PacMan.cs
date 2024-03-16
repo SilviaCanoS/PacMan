@@ -12,9 +12,9 @@ public class PacMan : MonoBehaviour
     float caminar = 10f, sensibilidadMouse = 1f, rotacionX;
     Transform camara;
 
-    public AudioClip comerPuntos, iniciarJuego, pacManMuere, efectoAzul;
-    GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul;
-    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul;
+    public AudioClip comerPuntos, iniciarJuego, pacManMuere, efectoAzul, comeFantasma;
+    GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul, sonidoComeFantasma;
+    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul, sourceComeFantasma;
 
     public int puntuacion = 0, vidas = 2;
     public Transform transformPuntuacion;
@@ -24,6 +24,7 @@ public class PacMan : MonoBehaviour
     public GameObject vida1, vida2, vida3;
 
     public Material azulMarino, rojo, rosa, azul, naranja;
+    public bool efectoAzulActivado;
 
     private void Start()
     {
@@ -45,6 +46,8 @@ public class PacMan : MonoBehaviour
         sourcePacManMuere = sonidoPacManMuere.GetComponent<AudioSource>();
         sonidoEfectoAzul = GameObject.Find("EfectoAzul");
         sourceEfectoAzul = sonidoEfectoAzul.GetComponent<AudioSource>();
+        sonidoComeFantasma = GameObject.Find("ComeFantasma");
+        sourceComeFantasma = sonidoComeFantasma.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -70,39 +73,36 @@ public class PacMan : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Punto")) 
+        if (other.CompareTag("Punto"))
         {
             sourceComerPuntos.Play();
             puntuacion += 10;
-            if (puntuacion > puntaciones.puntos[5])
-            {
-                puntaciones.puntos[5] = puntuacion;
-                puntaciones.nombres[5] = puntaciones.nombreActual;
-            } 
-            textPuntuacion.text = puntuacion.ToString();
+            CambiarPuntuacion();
 
-            if(other.transform.localScale.x == 1)
+            if (other.transform.localScale.x == 1)
             {
                 puntuacion += 10;
+                CambiarPuntuacion();
+                efectoAzulActivado = true;
                 sourceEfectoAzul.Play();
-                var aux = GameObject.Find("Fantasma Rojo").transform.GetChild(0);
+                var aux = GameObject.FindGameObjectWithTag("Rojo").transform.GetChild(0);
                 aux.GetComponent<MeshRenderer>().material = azulMarino;
-                aux = GameObject.Find("Fantasma Rojo").transform.GetChild(1);
-                aux.GetComponent<MeshRenderer>().material = azulMarino;
-
-                aux = GameObject.Find("Fantasma Rosa").transform.GetChild(0);
-                aux.GetComponent<MeshRenderer>().material = azulMarino;
-                aux = GameObject.Find("Fantasma Rosa").transform.GetChild(1);
+                aux = GameObject.FindGameObjectWithTag("Rojo").transform.GetChild(1);
                 aux.GetComponent<MeshRenderer>().material = azulMarino;
 
-                aux = GameObject.Find("Fantasma Azul").transform.GetChild(0);
+                aux = GameObject.FindGameObjectWithTag("Rosa").transform.GetChild(0);
                 aux.GetComponent<MeshRenderer>().material = azulMarino;
-                aux = GameObject.Find("Fantasma Azul").transform.GetChild(1);
+                aux = GameObject.FindGameObjectWithTag("Rosa").transform.GetChild(1);
                 aux.GetComponent<MeshRenderer>().material = azulMarino;
 
-                aux = GameObject.Find("Fantasma Naranja").transform.GetChild(0);
+                aux = GameObject.FindGameObjectWithTag("Azul").transform.GetChild(0);
                 aux.GetComponent<MeshRenderer>().material = azulMarino;
-                aux = GameObject.Find("Fantasma Naranja").transform.GetChild(1);
+                aux = GameObject.FindGameObjectWithTag("Azul").transform.GetChild(1);
+                aux.GetComponent<MeshRenderer>().material = azulMarino;
+
+                aux = GameObject.FindGameObjectWithTag("Naranja").transform.GetChild(0);
+                aux.GetComponent<MeshRenderer>().material = azulMarino;
+                aux = GameObject.FindGameObjectWithTag("Naranja").transform.GetChild(1);
                 aux.GetComponent<MeshRenderer>().material = azulMarino;
 
                 Invoke("DevolverColor", 10);
@@ -111,19 +111,30 @@ public class PacMan : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        else if (other.CompareTag("Fantasma"))
+        else if (other.CompareTag("Rojo") || other.CompareTag("Rosa") || other.CompareTag("Azul") 
+            || other.CompareTag("Naranja"))
         {
-            sourcePacManMuere.Play();
-            if (vidas == 2) vida2.GetComponent<Image>().color = Color.black;
-            if (vidas == 1)
+            if(efectoAzulActivado)
             {
-                vida3.GetComponent<Image>().color = Color.black;
-                int escenaActual = SceneManager.GetActiveScene().buildIndex;
-                SceneManager.LoadScene(escenaActual);
+                sourceComeFantasma.Play();
+                puntuacion += 200;
+                CambiarPuntuacion();
+                Destroy(other.gameObject);
             }
-            vidas--;
-            sourceIniciarJuego.Play();
-            gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
+            else
+            {
+                sourcePacManMuere.Play();
+                if (vidas == 2) vida2.GetComponent<Image>().color = Color.black;
+                if (vidas == 1)
+                {
+                    vida3.GetComponent<Image>().color = Color.black;
+                    int escenaActual = SceneManager.GetActiveScene().buildIndex;
+                    SceneManager.LoadScene(escenaActual);
+                }
+                vidas--;
+                sourceIniciarJuego.Play();
+                gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
+            }
         }
 
         else if(other.CompareTag("Portal Derecho"))
@@ -135,25 +146,36 @@ public class PacMan : MonoBehaviour
 
     public void DevolverColor()
     {
-        var aux = GameObject.Find("Fantasma Rojo").transform.GetChild(0);
+        var aux = GameObject.FindGameObjectWithTag("Rojo").transform.GetChild(0);
         aux.GetComponent<MeshRenderer>().material = rojo;
-        aux = GameObject.Find("Fantasma Rojo").transform.GetChild(1);
+        aux = GameObject.FindGameObjectWithTag("Rojo").transform.GetChild(1);
         aux.GetComponent<MeshRenderer>().material = rojo;
 
-        aux = GameObject.Find("Fantasma Rosa").transform.GetChild(0);
+        aux = GameObject.FindGameObjectWithTag("Rosa").transform.GetChild(0);
         aux.GetComponent<MeshRenderer>().material = rosa;
-        aux = GameObject.Find("Fantasma Rosa").transform.GetChild(1);
+        aux = GameObject.FindGameObjectWithTag("Rosa").transform.GetChild(1);
         aux.GetComponent<MeshRenderer>().material = rosa;
 
-        aux = GameObject.Find("Fantasma Azul").transform.GetChild(0);
+        aux = GameObject.FindGameObjectWithTag("Azul").transform.GetChild(0);
         aux.GetComponent<MeshRenderer>().material = azul;
-        aux = GameObject.Find("Fantasma Azul").transform.GetChild(1);
+        aux = GameObject.FindGameObjectWithTag("Azul").transform.GetChild(1);
         aux.GetComponent<MeshRenderer>().material = azul;
 
-        aux = GameObject.Find("Fantasma Naranja").transform.GetChild(0);
+        aux = GameObject.FindGameObjectWithTag("Naranja").transform.GetChild(0);
         aux.GetComponent<MeshRenderer>().material = naranja;
-        aux = GameObject.Find("Fantasma Naranja").transform.GetChild(1);
+        aux = GameObject.FindGameObjectWithTag("Naranja").transform.GetChild(1);
         aux.GetComponent<MeshRenderer>().material = naranja;
         sourceEfectoAzul.Stop();
+        efectoAzulActivado = false;
+    }
+
+    public void CambiarPuntuacion()
+    {
+        if (puntuacion > puntaciones.puntos[5])
+        {
+            puntaciones.puntos[5] = puntuacion;
+            puntaciones.nombres[5] = puntaciones.nombreActual;
+        }
+        textPuntuacion.text = puntuacion.ToString();
     }
 }
