@@ -1,44 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class FantasmaAzul : MonoBehaviour
 {
-    public float rangoAlerta = 10f, velocidad = 3f;
+    public Transform[] control;
+    int puntoDestino = 0;
+    NavMeshAgent nav;
+    System.Random random = new System.Random();
+
+    public float rangoAlerta = 5f;
+    public Transform jugador;
     public LayerMask capaJugador;
     bool alerta;
-    public Transform jugador;
-
-    public GameObject puntos;
-    public int hijos;
-    System.Random aleatorio = new System.Random();
 
     private void Start()
     {
-        jugador = GameObject.Find("PacMan").transform;
+        Transform aux = GameObject.Find("Control").transform;
+        control = new Transform[aux.childCount];
+        for (int i = 0; i < control.Length; i++) control[i] = aux.GetChild(i).transform;
+        control = control.OrderBy(x => random.Next()).ToArray(); //desordena el arreglo
 
-        puntos = GameObject.Find("Puntos");
-        hijos = puntos.transform.childCount;
+        nav = GetComponent<NavMeshAgent>();
+        nav.autoBraking = false;
+        SiguientePunto();
+
+        jugador = GameObject.Find("PacMan").transform;
     }
 
     void Update()
     {
+        if (nav.remainingDistance < .5f) SiguientePunto();
+
         //detecta si pacman esta cerca
         alerta = Physics.CheckSphere(transform.position, rangoAlerta, capaJugador);
-        if (alerta)
-        {
-            Vector3 posJugador = new Vector3(jugador.position.x, transform.position.y, jugador.position.z);
-            transform.LookAt(posJugador); //mira al jugador
-            transform.position = Vector3.MoveTowards(transform.position, posJugador,
-                velocidad * Time.deltaTime); //Sigue al jugador
-        }
-        else
-        {
-            var buscar = puntos.transform.GetChild(aleatorio.Next(hijos));
-            GetComponent<NavMeshAgent>().SetDestination(buscar.transform.position);
-        }
+        if (alerta) nav.destination = jugador.position;
+    }
+
+    void SiguientePunto()
+    {
+        nav.destination = control[puntoDestino].position;
+        puntoDestino = (puntoDestino + 1) % control.Length;
     }
 
     private void OnDrawGizmos()

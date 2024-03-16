@@ -1,40 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class FantasmaNaranja : MonoBehaviour
 {
-    public GameObject puntos;
-    public int hijos;
-    System.Random aleatorio = new System.Random();
-    public float rangoAlerta = 2f, velocidad = 3f;
-    bool alerta;
-    public LayerMask capaPuntos;
+    public Transform[] control;
+    int puntoDestino = 0;
+    NavMeshAgent nav;
+    System.Random random = new System.Random();
 
     private void Start()
     {
-        puntos = GameObject.Find("Puntos");
-        hijos = puntos.transform.childCount;
-        var buscar = puntos.transform.GetChild(aleatorio.Next(hijos));
-        GetComponent<NavMeshAgent>().SetDestination(buscar.transform.position);
+        Transform aux = GameObject.Find("Control").transform;
+        control = new Transform[aux.childCount];
+        for(int i=0; i<control.Length; i++) control[i] = aux.GetChild(i).transform;
+        control = control.OrderBy(x => random.Next()).ToArray(); //desordena el arreglo
+
+        nav = GetComponent<NavMeshAgent>();
+        nav.autoBraking = false;
+        SiguientePunto();
     }
 
     void Update()
     {
-        alerta = Physics.CheckSphere(transform.position, rangoAlerta, capaPuntos); //detecta si esta cerca
-        if (alerta)
-        {
-            var buscar = puntos.transform.GetChild(aleatorio.Next(hijos));
-            GetComponent<NavMeshAgent>().SetDestination(buscar.transform.position);
-        }
+        if (nav.remainingDistance < .5f) SiguientePunto();
     }
 
-    private void OnDrawGizmos()
+    void SiguientePunto()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, rangoAlerta); //dibuja la esfera de alerta
+        nav.destination = control[puntoDestino].position;
+        puntoDestino = (puntoDestino + 1) % control.Length;
     }
 }
