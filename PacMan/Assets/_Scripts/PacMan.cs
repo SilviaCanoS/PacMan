@@ -12,9 +12,10 @@ public class PacMan : MonoBehaviour
     float caminar = 10f, sensibilidadMouse = 1f, rotacionX;
     Transform camara;
 
-    public AudioClip comerPuntos, iniciarJuego, pacManMuere, efectoAzul, comeFantasma;
-    GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul, sonidoComeFantasma;
-    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul, sourceComeFantasma;
+    GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul, sonidoComeFantasma,
+        sonidoPerder, sonidoGanar;
+    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul, 
+        sourceComeFantasma, sourcePerder, sourceGanar;
 
     public int puntuacion = 0, vidas = 2;
     public Transform transformPuntuacion;
@@ -25,6 +26,8 @@ public class PacMan : MonoBehaviour
 
     public Material azulMarino, rojo, rosa, azul, naranja;
     public bool efectoAzulActivado;
+
+    public Transform puntos;
 
     private void Start()
     {
@@ -48,6 +51,12 @@ public class PacMan : MonoBehaviour
         sourceEfectoAzul = sonidoEfectoAzul.GetComponent<AudioSource>();
         sonidoComeFantasma = GameObject.Find("ComeFantasma");
         sourceComeFantasma = sonidoComeFantasma.GetComponent<AudioSource>();
+        sonidoPerder = GameObject.Find("Perder");
+        sourcePerder = sonidoPerder.GetComponent<AudioSource>();
+        sonidoGanar = GameObject.Find("Ganar");
+        sourceGanar = sonidoGanar.GetComponent<AudioSource>();
+
+        puntos = GameObject.Find("Puntos").transform;
     }
 
     private void Update()
@@ -107,6 +116,13 @@ public class PacMan : MonoBehaviour
 
                 Invoke("DevolverColor", 10);
             }
+
+            if (puntos.childCount == 1)
+            {
+                sourceGanar.Play();
+                int escenaActual = SceneManager.GetActiveScene().buildIndex;
+                SceneManager.LoadScene(escenaActual + 1);
+            }
             //puntaciones.Guardar();
             Destroy(other.gameObject);
         }
@@ -123,17 +139,20 @@ public class PacMan : MonoBehaviour
             }
             else
             {
-                sourcePacManMuere.Play();
-                if (vidas == 2) vida2.GetComponent<Image>().color = Color.black;
-                if (vidas == 1)
+                if (vidas == 2)
+                {
+                    sourcePacManMuere.Play();
+                    vida2.GetComponent<Image>().color = Color.black;
+                    vidas--;
+                    sourceIniciarJuego.Play();
+                    gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
+                }
+                else if (vidas == 1)
                 {
                     vida3.GetComponent<Image>().color = Color.black;
-                    int escenaActual = SceneManager.GetActiveScene().buildIndex;
-                    SceneManager.LoadScene(escenaActual);
+                    sourcePerder.Play();
+                    Invoke("Reiniciar", 3);
                 }
-                vidas--;
-                sourceIniciarJuego.Play();
-                gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
             }
         }
 
@@ -177,5 +196,10 @@ public class PacMan : MonoBehaviour
             puntaciones.nombres[5] = puntaciones.nombreActual;
         }
         textPuntuacion.text = puntuacion.ToString();
+    }
+
+    public void Reiniciar()
+    {
+        SceneManager.LoadScene(0);
     }
 }
