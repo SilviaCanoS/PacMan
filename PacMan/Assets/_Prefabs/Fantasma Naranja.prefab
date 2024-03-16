@@ -666,13 +666,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a1a252d9d0edb47b4cd23b805a1d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntos: {fileID: 0}
-  hijos: 0
-  rangoAlerta: 1
-  velocidad: 3
-  capaPuntos:
+  control: []
+  puntoDestino: 0
+  nav: {fileID: 0}
+  rangoAlerta: 0
+  jugador: {fileID: 0}
+  capaJugador:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
+  alerta: 0
 --- !u!195 &-1840673514033455611
 NavMeshAgent:
   m_ObjectHideFlags: 0

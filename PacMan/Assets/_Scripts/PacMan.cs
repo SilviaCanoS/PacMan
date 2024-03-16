@@ -16,14 +16,12 @@ public class PacMan : MonoBehaviour
     GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoPacManCome;
     AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourcePacManCome;
 
-    public int puntuacion = 0, vidas = 2, puntosRestantes, puntosTotales;
+    public int puntuacion = 0, vidas = 2;
     public Transform transformPuntuacion;
     public TMPro.TMP_Text textPuntuacion;
     public Puntaciones puntaciones;
 
     public GameObject vida1, vida2, vida3;
-
-    public bool aumentarVelocidad = false;
 
     public Material azulMarino, rojo, rosa, azul, naranja;
 
@@ -47,9 +45,6 @@ public class PacMan : MonoBehaviour
         sourcePacManMuere = sonidoPacManMuere.GetComponent<AudioSource>();
         sonidoPacManCome = GameObject.Find("PacManCome");
         sourcePacManCome = sonidoPacManCome.GetComponent<AudioSource>();
-
-        puntosRestantes = GameObject.Find("Puntos").transform.childCount;
-        puntosTotales = GameObject.Find("Puntos").transform.childCount;
     }
 
     private void Update()
@@ -86,9 +81,6 @@ public class PacMan : MonoBehaviour
             } 
             textPuntuacion.text = puntuacion.ToString();
 
-            puntosRestantes--;
-            if (puntosRestantes < puntosTotales / 2) aumentarVelocidad = true;
-
             if(other.transform.localScale.x == 1)
             {
                 puntuacion += 10;
@@ -116,8 +108,6 @@ public class PacMan : MonoBehaviour
                 Invoke("DevolverColor", 10);
             }
             //puntaciones.Guardar();
-
-            //other.GetComponent<MeshRenderer>().enabled = false;
             Destroy(other.gameObject);
         }
 
@@ -137,15 +127,10 @@ public class PacMan : MonoBehaviour
         }
 
         else if(other.CompareTag("Portal Derecho"))
-        {
             gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
-        }
 
         else if (other.CompareTag("Portal Izquierdo"))
-        {
             gameObject.transform.position = new Vector3(23.5f, -0.5f, 1f);
-        }
-
     }
 
     public void DevolverColor()
