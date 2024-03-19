@@ -769,15 +769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034995bf189271444b5a30a9844eb12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  control: []
-  puntoDestino: 0
-  nav: {fileID: 0}
-  rangoAlerta: 0
   jugador: {fileID: 0}
-  capaJugador:
-    serializedVersion: 2
-    m_Bits: 64
-  alerta: 0
   puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
 --- !u!195 &-7327948231850815292
 NavMeshAgent:
@@ -798,7 +790,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &4697996395183406268

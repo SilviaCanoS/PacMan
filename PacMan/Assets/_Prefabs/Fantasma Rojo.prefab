@@ -457,6 +457,7 @@ MonoBehaviour:
     m_Bits: 64
   alerta: 0
   puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
+  coordenadaX: 0
   referenciaPuntos: 0
   puntosRestantes: 0
   puntos: {fileID: 0}
@@ -509,7 +510,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &4381803842224436164
