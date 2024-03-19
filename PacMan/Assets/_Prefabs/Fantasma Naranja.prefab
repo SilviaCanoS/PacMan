@@ -778,6 +778,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   alerta: 0
+  puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
 --- !u!195 &-1840673514033455611
 NavMeshAgent:
   m_ObjectHideFlags: 0

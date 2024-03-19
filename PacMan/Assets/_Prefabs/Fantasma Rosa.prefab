@@ -770,7 +770,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jugador: {fileID: 0}
-  hijo: 6
+  puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
+  enemigoDistancia: 3
 --- !u!195 &-7327948231850815292
 NavMeshAgent:
   m_ObjectHideFlags: 0

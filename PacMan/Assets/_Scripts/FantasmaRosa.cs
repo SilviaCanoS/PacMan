@@ -1,20 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FantasmaRosa : MonoBehaviour
+public class FantasmaRosa : Fantasma
 {
-    public Transform jugador;
-
-    private void Start()
+    void Update()
     {
-        jugador = GameObject.Find("PacMan").transform;
-    }
-
-    private void Update()
-    {
-        GetComponent<NavMeshAgent>().SetDestination(jugador.position);
+        if (nav.remainingDistance < .5f) SiguientePunto();
+        if (!puntaciones.efectoAzul) GetComponent<NavMeshAgent>().SetDestination(jugador.position);
     }
 }

@@ -17,6 +17,8 @@ public class Fantasma : MonoBehaviour
     public LayerMask capaJugador;
     public bool alerta;
 
+    public Puntaciones puntaciones;
+
     private void Start()
     {
         Transform aux = GameObject.Find("Control").transform;
@@ -35,9 +37,12 @@ public class Fantasma : MonoBehaviour
     {
         if (nav.remainingDistance < .5f) SiguientePunto();
 
-        //detecta si pacman esta cerca
-        alerta = Physics.CheckSphere(transform.position, rangoAlerta, capaJugador);
-        if (alerta) nav.destination = jugador.position;
+        if (!puntaciones.efectoAzul)
+        {
+            //detecta si pacman esta cerca
+            alerta = Physics.CheckSphere(transform.position, rangoAlerta, capaJugador);
+            if (alerta) nav.destination = jugador.position;
+        }
     }
 
     public void SiguientePunto()
