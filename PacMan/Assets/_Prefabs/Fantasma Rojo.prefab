@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 2116714224377400161}
   - component: {fileID: 8911115513218644135}
   - component: {fileID: 428463980398029}
-  - component: {fileID: 8051852389335023559}
+  - component: {fileID: 729497813548962648}
   m_Layer: 8
   m_Name: Indicador
   m_TagString: Untagged
@@ -375,7 +375,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8051852389335023559
+--- !u!114 &729497813548962648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,11 +384,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4193225551703103755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fde4baeb0a73e045a2aca44bcd23fac, type: 3}
+  m_Script: {fileID: 11500000, guid: 8388aa3a1d0fccd4e9ea1eebbd108f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   radar: 0
-  capaJugador:
+  rango: 10
+  mask:
     serializedVersion: 2
     m_Bits: 64
 --- !u!1 &4567785138106866423
@@ -404,6 +405,7 @@ GameObject:
   - component: {fileID: 486668121526032271}
   - component: {fileID: 8753177802450515629}
   - component: {fileID: -8763772439581096819}
+  - component: {fileID: 4381803842224436164}
   m_Layer: 0
   m_Name: Fantasma Rojo
   m_TagString: Rojo
@@ -454,7 +456,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   alerta: 0
-  radar: 0
   referenciaPuntos: 0
   puntosRestantes: 0
   puntos: {fileID: 0}
@@ -510,6 +511,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4381803842224436164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4567785138106866423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7734bc559b22fde42aebb05f548b2efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hijo: 6
 --- !u!1 &5219608277261944690
 GameObject:
   m_ObjectHideFlags: 0

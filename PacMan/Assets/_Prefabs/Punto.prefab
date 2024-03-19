@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8388aa3a1d0fccd4e9ea1eebbd108f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alerta: 0
+  radar: 0
   rango: 5
   mask:
     serializedVersion: 2
@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 848066177523232281}
   - component: {fileID: 3550656786392098965}
   - component: {fileID: 6066042230419865278}
+  - component: {fileID: 9084066415167778043}
   m_Layer: 7
   m_Name: Punto
   m_TagString: Punto
@@ -199,3 +200,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9084066415167778043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8533402371669509501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7734bc559b22fde42aebb05f548b2efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hijo: 0

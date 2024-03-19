@@ -5,7 +5,7 @@ using UnityEngine;
 public class DetectarRadar : MonoBehaviour
 {
     public bool radar;
-    public float rango = 5f;
+    public float rango = 10f;
     public LayerMask mask;
 
     private void Update()

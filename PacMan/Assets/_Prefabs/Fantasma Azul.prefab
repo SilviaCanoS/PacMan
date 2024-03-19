@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 4293648259774015510}
   - component: {fileID: -807186817269699508}
   - component: {fileID: 6536822135016953019}
+  - component: {fileID: -7671559098028199875}
   m_Layer: 0
   m_Name: Fantasma Azul
   m_TagString: Azul
@@ -212,6 +213,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   alerta: 0
+--- !u!114 &-7671559098028199875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758277504813584094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7734bc559b22fde42aebb05f548b2efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hijo: 6
 --- !u!1 &2983800088042304940
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +431,7 @@ GameObject:
   - component: {fileID: 6048792375271115668}
   - component: {fileID: 4042554789318467407}
   - component: {fileID: 4956820303920801323}
-  - component: {fileID: 4324996530382971393}
+  - component: {fileID: 6948601422935482423}
   m_Layer: 8
   m_Name: Indicador
   m_TagString: Untagged
@@ -490,7 +504,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4324996530382971393
+--- !u!114 &6948601422935482423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -499,11 +513,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4655897280635747118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fde4baeb0a73e045a2aca44bcd23fac, type: 3}
+  m_Script: {fileID: 11500000, guid: 8388aa3a1d0fccd4e9ea1eebbd108f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   radar: 0
-  capaJugador:
+  rango: 10
+  mask:
     serializedVersion: 2
     m_Bits: 64
 --- !u!1 &7888470599499708935
