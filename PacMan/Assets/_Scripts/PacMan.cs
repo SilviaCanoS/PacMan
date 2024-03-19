@@ -64,7 +64,7 @@ public class PacMan : MonoBehaviour
         inputMov.x = Input.GetAxis("Horizontal");
         inputMov.y = Input.GetAxis("Vertical");
 
-        inputRot.x = Input.GetAxis("Mouse X") * sensibilidadMouse;
+        inputRot.x = Input.GetAxis("Horizontal") * sensibilidadMouse;
         inputRot.y = Input.GetAxis("Mouse Y") * sensibilidadMouse;
     }
 
