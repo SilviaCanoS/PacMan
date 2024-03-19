@@ -88,6 +88,12 @@ public class PacMan : MonoBehaviour
             puntuacion += 10;
             CambiarPuntuacion();
 
+            if(other.transform.localScale.x == .4f)
+            {
+                puntuacion -= 100;
+                CambiarPuntuacion();
+            }
+
             if (other.transform.localScale.x == 1)
             {
                 puntuacion += 10;
@@ -192,16 +198,13 @@ public class PacMan : MonoBehaviour
 
     public void CambiarPuntuacion()
     {
-        if (puntuacion > puntaciones.puntos[5])
-        {
-            puntaciones.puntos[5] = puntuacion;
-            puntaciones.nombres[5] = puntaciones.nombreActual;
-        }
+        puntaciones.puntacionActual = puntuacion;
         textPuntuacion.text = puntuacion.ToString();
     }
 
     public void Reiniciar()
     {
         SceneManager.LoadScene(0);
+        puntaciones.puntacionActual = 0;
     }
 }

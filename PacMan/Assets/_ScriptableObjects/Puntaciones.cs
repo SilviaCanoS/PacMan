@@ -6,6 +6,7 @@ using UnityEngine;
 public class Puntaciones : ScriptableObjects
 {
     public bool efectoAzul;
+    public int puntacionActual = 0;
     public string nombreActual = "Jugador";
     public string[] nombres = new string[6] {"Jugador1", "Jugador2", "Jugador3", "Jugador4", "Jugador5",
                                             "Jugador6" };

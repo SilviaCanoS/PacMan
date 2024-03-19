@@ -18,6 +18,7 @@ public class Fantasma : MonoBehaviour
     public bool alerta;
 
     public Puntaciones puntaciones;
+    public float coordenadaX;
 
     private void Start()
     {
@@ -37,7 +38,9 @@ public class Fantasma : MonoBehaviour
     {
         if (nav.remainingDistance < .5f) SiguientePunto();
 
-        if (!puntaciones.efectoAzul)
+        if (puntaciones.efectoAzul) 
+            GetComponent<NavMeshAgent>().destination = new Vector3(coordenadaX, 0, 0.9f);
+        else
         {
             //detecta si pacman esta cerca
             alerta = Physics.CheckSphere(transform.position, rangoAlerta, capaJugador);

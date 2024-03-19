@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Principal : MonoBehaviour
 {
     public GameObject canvasPrincipal, canvasPausa, canvasPuntuacion;
+    public Puntaciones puntaciones;
 
     public void MostrarPausa()
     {
@@ -40,6 +41,7 @@ public class Principal : MonoBehaviour
 
     public void ReiniciarNivel()
     {
+        puntaciones.puntacionActual = 0;
         Time.timeScale = 1;
         int escenaActual = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(escenaActual);
