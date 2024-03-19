@@ -93,6 +93,7 @@ public class PacMan : MonoBehaviour
                 puntuacion += 10;
                 CambiarPuntuacion();
                 efectoAzulActivado = true;
+                puntaciones.efectoAzul = true;
                 sourceEfectoAzul.Play();
                 var aux = GameObject.FindGameObjectWithTag("Rojo").transform.GetChild(0);
                 aux.GetComponent<MeshRenderer>().material = azulMarino;
@@ -186,6 +187,7 @@ public class PacMan : MonoBehaviour
         aux.GetComponent<MeshRenderer>().material = naranja;
         sourceEfectoAzul.Stop();
         efectoAzulActivado = false;
+        puntaciones.efectoAzul = false;
     }
 
     public void CambiarPuntuacion()

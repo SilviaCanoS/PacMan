@@ -456,6 +456,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   alerta: 0
+  puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
   referenciaPuntos: 0
   puntosRestantes: 0
   puntos: {fileID: 0}
