@@ -13,6 +13,7 @@ public class FantasmaRojo : Fantasma
     private void Awake()
     {
         rangoAlerta = 5f;
+        coordenadaX = -2f;
 
         puntos = GameObject.Find("Puntos").transform;
         referenciaPuntos = puntos.childCount / 2;

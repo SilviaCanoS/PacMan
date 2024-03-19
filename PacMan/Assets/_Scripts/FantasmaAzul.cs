@@ -10,5 +10,6 @@ public class FantasmaAzul : Fantasma
     private void Awake()
     {
         rangoAlerta = 10f;
+        coordenadaX = 0.7f;
     }
 }

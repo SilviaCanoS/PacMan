@@ -8,22 +8,18 @@ using UnityEngine.AI;
 
 public class FantasmaNaranja : Fantasma
 {
-    private void Start()
+
+    private void Awake()
     {
         rangoAlerta = 0;
-
-        Transform aux = GameObject.Find("Control").transform;
-        control = new Transform[aux.childCount];
-        for(int i=0; i<control.Length; i++) control[i] = aux.GetChild(i).transform;
-        control = control.OrderBy(x => random.Next()).ToArray(); //desordena el arreglo
-
-        nav = GetComponent<NavMeshAgent>();
-        nav.autoBraking = false;
-        SiguientePunto();
+        coordenadaX = 2f;
     }
-
+    
     void Update()
     {
         if (nav.remainingDistance < .5f) SiguientePunto();
+
+        if (puntaciones.efectoAzul)
+            GetComponent<NavMeshAgent>().destination = new Vector3(coordenadaX, 0, 0.9f);
     }
 }

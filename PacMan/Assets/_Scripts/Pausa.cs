@@ -21,6 +21,7 @@ public class Pausa : MonoBehaviour
     {
         string nombre = inputNombre.text;
         puntaciones.nombreActual = nombre;
+        puntaciones.puntacionActual = 0;
         textTitulo.text = $"¡Hola, {puntaciones.nombreActual}!";
 
         Time.timeScale = 1;
