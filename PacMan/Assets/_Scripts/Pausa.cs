@@ -20,6 +20,11 @@ public class Pausa : MonoBehaviour
     public void CambiarNombre()
     {
         string nombre = inputNombre.text;
+        if (puntaciones.puntacionActual > puntaciones.puntos[5])
+        {
+            puntaciones.puntos[5] = puntaciones.puntacionActual;
+            puntaciones.nombres[5] = puntaciones.nombreActual;
+        }
         puntaciones.nombreActual = nombre;
         puntaciones.puntacionActual = 0;
         textTitulo.text = $"¡Hola, {puntaciones.nombreActual}!";

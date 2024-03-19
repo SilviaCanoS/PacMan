@@ -15,12 +15,6 @@ public class Tabla : MonoBehaviour
 
     private void OnEnable()
     {
-        if(puntaciones.puntacionActual > puntaciones.puntos[5])
-        {
-            puntaciones.puntos[5] = puntaciones.puntacionActual;
-            puntaciones.nombres[5] = puntaciones.nombreActual;
-        }
-
         if (puntaciones.puntos[5] > puntaciones.puntos[4]) Cambiar(5, 4);
         if (puntaciones.puntos[4] > puntaciones.puntos[3]) Cambiar(4, 3);
         if (puntaciones.puntos[3] > puntaciones.puntos[2]) Cambiar(3, 2);
