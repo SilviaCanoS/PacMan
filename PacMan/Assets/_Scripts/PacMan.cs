@@ -22,7 +22,7 @@ public class PacMan : MonoBehaviour
     public TMPro.TMP_Text textPuntuacion;
     public Puntaciones puntaciones;
 
-    public GameObject vida1, vida2, vida3;
+    public GameObject vida1, vida2, vida3, canvasPerder;
 
     public Material azulMarino, rojo, rosa, azul, naranja;
     public bool efectoAzulActivado;
@@ -157,6 +157,8 @@ public class PacMan : MonoBehaviour
                 else if (vidas == 1)
                 {
                     vida3.GetComponent<Image>().color = Color.black;
+                    this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    canvasPerder.SetActive(true);
                     sourcePerder.Play();
                     Invoke("Reiniciar", 3);
                 }
