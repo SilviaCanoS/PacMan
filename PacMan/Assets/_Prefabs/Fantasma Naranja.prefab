@@ -497,9 +497,9 @@ GameObject:
   - component: {fileID: 2408830425037617244}
   - component: {fileID: 192650003933755863}
   - component: {fileID: 2649664598205789429}
-  - component: {fileID: 2759850550913783191}
+  - component: {fileID: 2065537844169052811}
   m_Layer: 8
-  m_Name: Sphere (5)
+  m_Name: Indicador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -570,7 +570,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2759850550913783191
+--- !u!114 &2065537844169052811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -579,11 +579,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6593620889587841419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fde4baeb0a73e045a2aca44bcd23fac, type: 3}
+  m_Script: {fileID: 11500000, guid: 8388aa3a1d0fccd4e9ea1eebbd108f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   radar: 0
-  capaJugador:
+  rango: 10
+  mask:
     serializedVersion: 2
     m_Bits: 64
 --- !u!1 &8180521228918460340
@@ -696,6 +697,7 @@ GameObject:
   - component: {fileID: 8653928291578769757}
   - component: {fileID: 6749312396268777674}
   - component: {fileID: -1840673514033455611}
+  - component: {fileID: -7153452470606143076}
   m_Layer: 0
   m_Name: Fantasma Naranja
   m_TagString: Naranja
@@ -774,7 +776,7 @@ MonoBehaviour:
   jugador: {fileID: 0}
   capaJugador:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   alerta: 0
 --- !u!195 &-1840673514033455611
 NavMeshAgent:
@@ -798,3 +800,16 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-7153452470606143076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8723011939053886441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7734bc559b22fde42aebb05f548b2efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hijo: 6
