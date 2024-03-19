@@ -204,7 +204,12 @@ public class PacMan : MonoBehaviour
 
     public void Reiniciar()
     {
-        SceneManager.LoadScene(0);
+        if (puntaciones.puntacionActual > puntaciones.puntos[5])
+        {
+            puntaciones.puntos[5] = puntaciones.puntacionActual;
+            puntaciones.nombres[5] = puntaciones.nombreActual;
+        }
         puntaciones.puntacionActual = 0;
+        SceneManager.LoadScene(0);
     }
 }
