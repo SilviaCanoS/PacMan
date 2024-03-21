@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5242674481288870592}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ele
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6599870176576113419}
   - component: {fileID: 7567036988190914133}
   - component: {fileID: 7186825887672023230}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 2246556771749496526}
   - component: {fileID: 6126487119630244762}
   - component: {fileID: 1419274574642246906}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

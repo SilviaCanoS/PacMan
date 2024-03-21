@@ -6,11 +6,12 @@ public class Intermitencia : MonoBehaviour
 {
     public int hijo;
     GameObject aux;
+    public Puntaciones puntaciones;
 
     void Start()
     {
         aux = gameObject.transform.GetChild(hijo).gameObject;
-        Invoke("Mostrar", 2);
+        if(puntaciones.nivelDificultad == Puntaciones.Dificultad.dificil) Invoke("Mostrar", 2);
     }
 
     public void Mostrar()

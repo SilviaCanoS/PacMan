@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hijo: 6
+  puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
 --- !u!1 &5219608277261944690
 GameObject:
   m_ObjectHideFlags: 0
