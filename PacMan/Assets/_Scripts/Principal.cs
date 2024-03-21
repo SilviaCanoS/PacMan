@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Principal : MonoBehaviour
 {
-    public GameObject canvasPrincipal, canvasPausa, canvasPuntuacion;
+    public GameObject canvasPrincipal, canvasPausa, canvasPuntuacion, canvasControles;
     public Puntaciones puntaciones;
+
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.Space)) MostrarPausa();
+    }
 
     public void MostrarPausa()
     {
@@ -20,6 +25,18 @@ public class Principal : MonoBehaviour
         Time.timeScale = 1;
         canvasPrincipal.SetActive(true);
         canvasPausa.SetActive(false);
+    }
+
+    public void MostrarControles()
+    {
+        canvasPausa.SetActive(false);
+        canvasControles.SetActive(true);
+    }
+
+    public void OcultarControles()
+    {
+        canvasPausa.SetActive(true);
+        canvasControles.SetActive(false);
     }
 
     public void MostrarPuntuacion()
