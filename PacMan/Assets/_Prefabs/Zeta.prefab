@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8652090575604868730}
   - component: {fileID: 3318158194127770392}
   - component: {fileID: 9134594232345296282}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8817346139892349699}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Zeta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 8999049223486465024}
   - component: {fileID: 1243556229472458063}
   - component: {fileID: 3978115668470297501}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 6739179570610010991}
   - component: {fileID: 9211427784484554638}
   - component: {fileID: 8621531001302805736}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
