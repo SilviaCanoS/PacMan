@@ -85,7 +85,9 @@ public class PacMan : MonoBehaviour
         if (other.CompareTag("Punto"))
         {
             sourceComerPuntos.Play();
-            puntuacion += 10;
+            if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 5;
+            else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 10;
+            else puntuacion += 15;
             CambiarPuntuacion();
 
             if(other.transform.localScale.x == .4f)
@@ -96,7 +98,9 @@ public class PacMan : MonoBehaviour
 
             if (other.transform.localScale.x == 1)
             {
-                puntuacion += 10;
+                if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 5;
+                else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 10;
+                else puntuacion += 15;
                 CambiarPuntuacion();
                 efectoAzulActivado = true;
                 puntaciones.efectoAzul = true;
@@ -140,7 +144,9 @@ public class PacMan : MonoBehaviour
             if(efectoAzulActivado)
             {
                 sourceComeFantasma.Play();
-                puntuacion += 200;
+                if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 100;
+                else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 200;
+                else puntuacion += 300;
                 CambiarPuntuacion();
                 Destroy(other.gameObject);
             }
