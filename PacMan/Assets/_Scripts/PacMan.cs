@@ -22,12 +22,13 @@ public class PacMan : MonoBehaviour
     public TMPro.TMP_Text textPuntuacion;
     public Puntaciones puntaciones;
 
-    public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder, cerezaPrefab, cereza;
+    public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder, cerezaPrefab, cereza, fresaPrefab,
+        fresa;
 
     public Material azulMarino, rojo, rosa, azul, naranja;
     public bool efectoAzulActivado;
 
-    public Transform puntos;
+    public Transform puntos, control;
 
     public Vector3[] cerezasCoord = new Vector3[] {new Vector3(-4.5f, 0, 4), new Vector3(-4.5f, 0, -2),
                                                     new Vector3(4.5f, 0, 4), new Vector3(4.5f, 0, -2)};
@@ -60,6 +61,7 @@ public class PacMan : MonoBehaviour
         sourceGanar = sonidoGanar.GetComponent<AudioSource>();
 
         puntos = GameObject.Find("Puntos").transform;
+        control = GameObject.Find("Control").transform;
     }
 
     private void Update()
@@ -97,6 +99,9 @@ public class PacMan : MonoBehaviour
             {
                 puntuacion -= 100;
                 CambiarPuntuacion();
+                fresa = Instantiate<GameObject>(fresaPrefab, 
+                    control.GetChild(Random.Range(0, 21)).transform.position, Quaternion.identity);
+                Invoke("DestruirFresa", 20);
             }
 
             if (other.transform.localScale.x == 1)
@@ -106,7 +111,8 @@ public class PacMan : MonoBehaviour
                 else puntuacion += 15;
                 CambiarPuntuacion();
 
-                cereza = Instantiate<GameObject>(cerezaPrefab, cerezasCoord[Random.Range(0, 4)], Quaternion.identity);
+                cereza = Instantiate<GameObject>(cerezaPrefab, cerezasCoord[Random.Range(0, 4)], 
+                    Quaternion.identity);
 
                 efectoAzulActivado = true;
                 puntaciones.efectoAzul = true;
@@ -212,6 +218,15 @@ public class PacMan : MonoBehaviour
             VidaExtra();
             Destroy(other.gameObject);
         }
+
+        else if (other.CompareTag("Fresa"))
+        {
+            if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 100;
+            else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 150;
+            else puntuacion += 250;
+            CambiarPuntuacion();
+            Destroy(other.gameObject);
+        }
     }
 
     public void DevolverColor()
@@ -282,6 +297,11 @@ public class PacMan : MonoBehaviour
 
     public void DestruirCereza()
     {
-        Destroy(cereza.gameObject);
+        if(cereza != null) Destroy(cereza);
+    }
+
+    public void DestruirFresa()
+    {
+        if(fresa != null) Destroy(fresa);
     }
 }
