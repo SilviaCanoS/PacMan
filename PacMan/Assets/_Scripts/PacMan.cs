@@ -17,12 +17,12 @@ public class PacMan : MonoBehaviour
     AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul, 
         sourceComeFantasma, sourcePerder, sourceGanar;
 
-    public int puntuacion = 0, vidas = 2;
+    public int puntuacion = 0, vidas = 2, ref1up = 1000;
     public Transform transformPuntuacion;
     public TMPro.TMP_Text textPuntuacion;
     public Puntaciones puntaciones;
 
-    public GameObject vida1, vida2, vida3, canvasPerder;
+    public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder;
 
     public Material azulMarino, rojo, rosa, azul, naranja;
     public bool efectoAzulActivado;
@@ -146,21 +146,45 @@ public class PacMan : MonoBehaviour
             }
             else
             {
-                if (vidas == 2)
+                switch (vidas)
                 {
-                    sourcePacManMuere.Play();
-                    vida2.GetComponent<Image>().color = Color.black;
-                    vidas--;
-                    sourceIniciarJuego.Play();
-                    gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
-                }
-                else if (vidas == 1)
-                {
-                    vida3.GetComponent<Image>().color = Color.black;
-                    this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                    canvasPerder.SetActive(true);
-                    sourcePerder.Play();
-                    Invoke("Reiniciar", 3);
+                    case 4: 
+                        sourcePacManMuere.Play();
+                        vida5.SetActive(false);
+                        vida4.GetComponent<Image>().color = Color.black;
+                        vidas--;
+                        sourceIniciarJuego.Play();
+                        gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
+                        break;
+                    case 3:
+                        sourcePacManMuere.Play();
+                        vida4.SetActive(false);
+                        vida1.GetComponent<Image>().color = Color.black;
+                        vidas--;
+                        sourceIniciarJuego.Play();
+                        gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
+                        break;
+                    case 2:
+                        sourcePacManMuere.Play();
+                        vida1.GetComponent<Image>().color = Color.black;
+                        vidas--;
+                        sourceIniciarJuego.Play();
+                        gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
+                        break;
+                    case 1:
+                        sourcePacManMuere.Play();
+                        vida2.GetComponent<Image>().color = Color.black;
+                        vidas--;
+                        sourceIniciarJuego.Play();
+                        gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
+                        break;
+                    case 0:
+                        vida3.GetComponent<Image>().color = Color.black;
+                        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                        canvasPerder.SetActive(true);
+                        sourcePerder.Play();
+                        Invoke("Reiniciar", 3);
+                        break; 
                 }
             }
         }
@@ -202,6 +226,26 @@ public class PacMan : MonoBehaviour
     {
         puntaciones.puntacionActual = puntuacion;
         textPuntuacion.text = puntuacion.ToString();
+
+        //Consigue 1up cada 1000 puntos
+        if (puntaciones.puntacionActual >= ref1up) 
+        {
+            
+            if (vidas < 4) vidas++;
+            switch (vidas)
+            {
+                case 2: vida2.GetComponent<Image>().color = Color.white; break;
+                case 3: 
+                    vida1.GetComponent<Image>().color = Color.white;
+                    vida4.SetActive(true);
+                    vida4.GetComponent<Image>().color = Color.black;
+                    break;
+                case 4:
+                    vida4.GetComponent<Image>().color = Color.white;
+                    vida5.SetActive(true); break;
+            }
+        }
+        ref1up += 1000;
     }
 
     public void Reiniciar()

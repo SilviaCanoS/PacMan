@@ -12,3 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8f6e94c3506964d92829e8e4b139ff, type: 3}
   m_Name: Puntuaciones
   m_EditorClassIdentifier: 
+  efectoAzul: 0
+  puntacionActual: 0
+  nombreActual: Jugador
+  nombres:
+  - Jugador1
+  - Jugador2
+  - Jugador3
+  - Jugador4
+  - Jugador5
+  - Jugador
+  puntos: 00000000000000000000000000000000000000004a010000
+  nivelDificultad: 1

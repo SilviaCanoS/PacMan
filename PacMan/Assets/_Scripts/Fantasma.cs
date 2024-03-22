@@ -31,6 +31,10 @@ public class Fantasma : MonoBehaviour
         nav.autoBraking = false;
         SiguientePunto();
 
+        if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) nav.speed = 1;
+        else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) nav.speed = 1.5f;
+        else nav.speed = 2;
+
         jugador = GameObject.Find("PacMan").transform;
     }
 
