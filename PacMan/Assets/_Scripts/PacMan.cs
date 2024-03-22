@@ -14,7 +14,7 @@ public class PacMan : MonoBehaviour
 
     GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul, sonidoComeFantasma,
         sonidoPerder, sonidoGanar;
-    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul, 
+    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul,
         sourceComeFantasma, sourcePerder, sourceGanar;
 
     public int puntuacion = 0, vidas = 2, ref1up = 1000;
@@ -22,12 +22,15 @@ public class PacMan : MonoBehaviour
     public TMPro.TMP_Text textPuntuacion;
     public Puntaciones puntaciones;
 
-    public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder;
+    public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder, cerezaPrefab, cereza;
 
     public Material azulMarino, rojo, rosa, azul, naranja;
     public bool efectoAzulActivado;
 
     public Transform puntos;
+
+    public Vector3[] cerezasCoord = new Vector3[] {new Vector3(-4.5f, 0, 4), new Vector3(-4.5f, 0, -2),
+                                                    new Vector3(4.5f, 0, 4), new Vector3(4.5f, 0, -2)};
 
     private void Start()
     {
@@ -90,7 +93,7 @@ public class PacMan : MonoBehaviour
             else puntuacion += 15;
             CambiarPuntuacion();
 
-            if(other.transform.localScale.x == .4f)
+            if (other.transform.localScale.x == .4f)
             {
                 puntuacion -= 100;
                 CambiarPuntuacion();
@@ -102,6 +105,9 @@ public class PacMan : MonoBehaviour
                 else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 10;
                 else puntuacion += 15;
                 CambiarPuntuacion();
+
+                cereza = Instantiate<GameObject>(cerezaPrefab, cerezasCoord[Random.Range(0, 4)], Quaternion.identity);
+
                 efectoAzulActivado = true;
                 puntaciones.efectoAzul = true;
                 sourceEfectoAzul.Play();
@@ -138,10 +144,10 @@ public class PacMan : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        else if (other.CompareTag("Rojo") || other.CompareTag("Rosa") || other.CompareTag("Azul") 
+        else if (other.CompareTag("Rojo") || other.CompareTag("Rosa") || other.CompareTag("Azul")
             || other.CompareTag("Naranja"))
         {
-            if(efectoAzulActivado)
+            if (efectoAzulActivado)
             {
                 sourceComeFantasma.Play();
                 if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 100;
@@ -154,7 +160,7 @@ public class PacMan : MonoBehaviour
             {
                 switch (vidas)
                 {
-                    case 4: 
+                    case 4:
                         sourcePacManMuere.Play();
                         vida5.SetActive(false);
                         vida4.GetComponent<Image>().color = Color.black;
@@ -190,16 +196,22 @@ public class PacMan : MonoBehaviour
                         canvasPerder.SetActive(true);
                         sourcePerder.Play();
                         Invoke("Reiniciar", 3);
-                        break; 
+                        break;
                 }
             }
         }
 
-        else if(other.CompareTag("Portal Derecho"))
+        else if (other.CompareTag("Portal Derecho"))
             gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
 
         else if (other.CompareTag("Portal Izquierdo"))
             gameObject.transform.position = new Vector3(23.5f, -0.5f, 1f);
+
+        else if (other.CompareTag("Cereza"))
+        {
+            VidaExtra();
+            Destroy(other.gameObject);
+        }
     }
 
     public void DevolverColor()
@@ -226,6 +238,8 @@ public class PacMan : MonoBehaviour
         sourceEfectoAzul.Stop();
         efectoAzulActivado = false;
         puntaciones.efectoAzul = false;
+
+        Invoke("DestruirCereza", 10);
     }
 
     public void CambiarPuntuacion()
@@ -234,23 +248,7 @@ public class PacMan : MonoBehaviour
         textPuntuacion.text = puntuacion.ToString();
 
         //Consigue 1up cada 1000 puntos
-        if (puntaciones.puntacionActual >= ref1up) 
-        {
-            
-            if (vidas < 4) vidas++;
-            switch (vidas)
-            {
-                case 2: vida2.GetComponent<Image>().color = Color.white; break;
-                case 3: 
-                    vida1.GetComponent<Image>().color = Color.white;
-                    vida4.SetActive(true);
-                    vida4.GetComponent<Image>().color = Color.black;
-                    break;
-                case 4:
-                    vida4.GetComponent<Image>().color = Color.white;
-                    vida5.SetActive(true); break;
-            }
-        }
+        if (puntaciones.puntacionActual >= ref1up) VidaExtra();   
         ref1up += 1000;
     }
 
@@ -263,5 +261,27 @@ public class PacMan : MonoBehaviour
         }
         puntaciones.puntacionActual = 0;
         SceneManager.LoadScene(0);
+    }
+
+    public void VidaExtra()
+    {
+        if (vidas < 4) vidas++;
+        switch (vidas)
+        {
+            case 2: vida2.GetComponent<Image>().color = Color.white; break;
+            case 3:
+                vida1.GetComponent<Image>().color = Color.white;
+                vida4.SetActive(true);
+                vida4.GetComponent<Image>().color = Color.black;
+                break;
+            case 4:
+                vida4.GetComponent<Image>().color = Color.white;
+                vida5.SetActive(true); break;
+        }
+    }
+
+    public void DestruirCereza()
+    {
+        Destroy(cereza.gameObject);
     }
 }
