@@ -12,7 +12,9 @@ public class FantasmaRojo : Fantasma
 
     private void Awake()
     {
-        rangoAlerta = 5f;
+        if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) rangoAlerta = 3;
+        else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) rangoAlerta = 5;
+        else rangoAlerta = 8f;
         coordenadaX = -2f;
 
         puntos = GameObject.Find("Puntos").transform;
