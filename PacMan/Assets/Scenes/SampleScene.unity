@@ -1588,6 +1588,10 @@ MonoBehaviour:
   vida4: {fileID: 445954049}
   vida5: {fileID: 1982817391}
   canvasPerder: {fileID: 1312036024}
+  cerezaPrefab: {fileID: 6959553138448550683, guid: 23920e0fa23b82a4a8f0ba5f464dd1e7, type: 3}
+  cereza: {fileID: 0}
+  fresaPrefab: {fileID: 6959553138448550683, guid: b3a1b5ae3c4fa9a47a8c120327675ae6, type: 3}
+  fresa: {fileID: 0}
   azulMarino: {fileID: 2100000, guid: 178826b05c1e49641b6c5c246845c863, type: 2}
   rojo: {fileID: 2100000, guid: 1c66ff09e71a49e449ea6d6c449ecdd3, type: 2}
   rosa: {fileID: 2100000, guid: 26665e427d2b21c46aacbe8c7be79517, type: 2}
@@ -1595,6 +1599,12 @@ MonoBehaviour:
   naranja: {fileID: 2100000, guid: bec23c61dbc4f884f854e02d0201c3fc, type: 2}
   efectoAzulActivado: 0
   puntos: {fileID: 0}
+  control: {fileID: 0}
+  cerezasCoord:
+  - {x: -4.5, y: 0, z: 4}
+  - {x: -4.5, y: 0, z: -2}
+  - {x: 4.5, y: 0, z: 4}
+  - {x: 4.5, y: 0, z: -2}
 --- !u!1001 &66316754
 PrefabInstance:
   m_ObjectHideFlags: 0

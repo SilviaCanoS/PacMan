@@ -13,6 +13,10 @@ TagManager:
   - Rosa
   - Azul
   - Naranja
+  - Cereza
+  - Fresa
+  - Manzana
+  - Mandarina
   layers:
   - Default
   - TransparentFX
