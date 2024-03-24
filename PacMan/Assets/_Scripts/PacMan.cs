@@ -80,8 +80,8 @@ public class PacMan : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody.velocity = transform.forward * caminar * inputMov.y //Avanzar adelante y atras
-                                + transform.right * caminar * inputMov.x; //Avanzar izquierda y derecha
+        rigidbody.velocity = transform.forward * caminar * inputMov.y; //Avanzar adelante y atras
+                                //+ transform.right * caminar * inputMov.x; //Avanzar izquierda y derecha
 
         transform.rotation *= Quaternion.Euler(0, inputRot.x, 0); //Camara izquiera y derecha
 
