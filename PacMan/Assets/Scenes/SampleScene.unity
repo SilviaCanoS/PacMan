@@ -1592,6 +1592,10 @@ MonoBehaviour:
   cereza: {fileID: 0}
   fresaPrefab: {fileID: 6959553138448550683, guid: b3a1b5ae3c4fa9a47a8c120327675ae6, type: 3}
   fresa: {fileID: 0}
+  manzanaPrefab: {fileID: 6959553138448550683, guid: fcb502d17c5f2d5468acccdfcf283042, type: 3}
+  manzana: {fileID: 0}
+  mandarinaPrefab: {fileID: 6959553138448550683, guid: 50ce7ec9007d5b0419a5d9c110432e51, type: 3}
+  mandarina: {fileID: 0}
   azulMarino: {fileID: 2100000, guid: 178826b05c1e49641b6c5c246845c863, type: 2}
   rojo: {fileID: 2100000, guid: 1c66ff09e71a49e449ea6d6c449ecdd3, type: 2}
   rosa: {fileID: 2100000, guid: 26665e427d2b21c46aacbe8c7be79517, type: 2}
@@ -9990,6 +9994,7 @@ Transform:
   - {fileID: 1201541068}
   - {fileID: 454674805}
   - {fileID: 479989072}
+  - {fileID: 2902901655774832853}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59630,6 +59635,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92e00825ba2c1f64d8414ae44f606977, type: 3}
+--- !u!4 &2902901655774832853 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+  m_PrefabInstance: {fileID: 4893943941954154934}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3463807048183914367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59753,6 +59763,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 277967656485947254, guid: b5070943b9bb64640bb1bc7fde908877, type: 3}
   m_PrefabInstance: {fileID: 4523578207307453789}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4893943941954154934
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 452227219}
+    m_Modifications:
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756295574457948515, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806508635992336713, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
+      propertyPath: m_Name
+      value: Fruta
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: af51bb3cd142dc64ba2852cf6bbc8a3b, type: 3}
 --- !u!1001 &5068008125547409001
 PrefabInstance:
   m_ObjectHideFlags: 0
