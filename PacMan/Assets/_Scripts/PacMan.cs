@@ -13,9 +13,9 @@ public class PacMan : MonoBehaviour
     Transform camara;
 
     GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul, sonidoComeFantasma,
-        sonidoPerder, sonidoGanar;
+        sonidoPerder, sonidoGanar, sonidoFruta;
     AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul,
-        sourceComeFantasma, sourcePerder, sourceGanar;
+        sourceComeFantasma, sourcePerder, sourceGanar, sourceFruta;
 
     public int puntuacion = 0, vidas = 2, ref1up = 1000;
     public Transform transformPuntuacion;
@@ -23,7 +23,7 @@ public class PacMan : MonoBehaviour
     public Puntaciones puntaciones;
 
     public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder, cerezaPrefab, cereza, fresaPrefab,
-        fresa, manzanaPrefab, manzana;
+        fresa, manzanaPrefab, manzana, mandarinaPrefab, mandarina;
 
     public Material azulMarino, rojo, rosa, azul, naranja;
     public bool efectoAzulActivado;
@@ -59,11 +59,14 @@ public class PacMan : MonoBehaviour
         sourcePerder = sonidoPerder.GetComponent<AudioSource>();
         sonidoGanar = GameObject.Find("Ganar");
         sourceGanar = sonidoGanar.GetComponent<AudioSource>();
+        sonidoFruta = GameObject.Find("Fruta");
+        sourceFruta = sonidoFruta.GetComponent<AudioSource>();
 
         puntos = GameObject.Find("Puntos").transform;
         control = GameObject.Find("Control").transform;
 
         Invoke("Manzana", Random.Range(10, 61));
+        Invoke("Mandarina", Random.Range(10, 61));
     }
 
     private void Update()
@@ -217,12 +220,14 @@ public class PacMan : MonoBehaviour
 
         else if (other.CompareTag("Cereza"))
         {
+            sourceFruta.Play();
             VidaExtra();
             Destroy(other.gameObject);
         }
 
         else if (other.CompareTag("Fresa"))
         {
+            sourceFruta.Play();
             if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 100;
             else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 150;
             else puntuacion += 250;
@@ -232,9 +237,18 @@ public class PacMan : MonoBehaviour
 
         else if (other.CompareTag("Manzana"))
         {
+            sourceFruta.Play();
             puntaciones.congelar = true;
             Destroy(other.gameObject);
             Invoke("Descongelar", 10);
+        }
+
+        else if (other.CompareTag("Mandarina"))
+        {
+            sourceFruta.Play();
+            caminar *= 2;
+            Destroy(other.gameObject);
+            Invoke("Ralentizar", 10);
         }
     }
 
@@ -319,6 +333,11 @@ public class PacMan : MonoBehaviour
         if (manzana != null) Destroy(manzana);
     }
 
+    public void DestruirMandarina()
+    {
+        if (mandarina != null) Destroy(mandarina);
+    }
+
     public void Manzana()
     {
         manzana = Instantiate<GameObject>(manzanaPrefab,
@@ -326,8 +345,20 @@ public class PacMan : MonoBehaviour
         Invoke("DestruirManzana", 20);
     }
 
+    public void Mandarina()
+    {
+        mandarina = Instantiate<GameObject>(mandarinaPrefab,
+                    control.GetChild(Random.Range(0, 21)).transform.position, Quaternion.identity);
+        Invoke("DestruirMandarina", 20);
+    }
+
     public void Descongelar()
     {
         puntaciones.congelar = false;
+    }
+
+    public void Ralentizar()
+    {
+        caminar /= 2;
     }
 }
