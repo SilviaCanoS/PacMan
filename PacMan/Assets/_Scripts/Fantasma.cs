@@ -44,6 +44,8 @@ public class Fantasma : MonoBehaviour
 
         if (puntaciones.efectoAzul) 
             GetComponent<NavMeshAgent>().destination = new Vector3(coordenadaX, 0, 0.9f);
+        else if(puntaciones.congelar) 
+            GetComponent<NavMeshAgent>().destination = gameObject.transform.position;
         else
         {
             //detecta si pacman esta cerca

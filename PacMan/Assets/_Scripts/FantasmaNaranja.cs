@@ -21,5 +21,8 @@ public class FantasmaNaranja : Fantasma
 
         if (puntaciones.efectoAzul)
             GetComponent<NavMeshAgent>().destination = new Vector3(coordenadaX, 0, 0.9f);
+        
+        if (puntaciones.congelar)
+            GetComponent<NavMeshAgent>().destination = gameObject.transform.position;
     }
 }

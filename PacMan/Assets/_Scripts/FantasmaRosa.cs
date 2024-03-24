@@ -10,6 +10,8 @@ public class FantasmaRosa : Fantasma
     void Update()
     {
         if (puntaciones.efectoAzul) GetComponent<NavMeshAgent>().destination = new Vector3(-0.7f, 0, 0.9f);
+        else if (puntaciones.congelar) 
+            GetComponent<NavMeshAgent>().destination = gameObject.transform.position;
         else GetComponent<NavMeshAgent>().destination = jugador.position;
     }
 }
