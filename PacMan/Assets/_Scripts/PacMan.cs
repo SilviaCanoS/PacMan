@@ -23,7 +23,7 @@ public class PacMan : MonoBehaviour
     public Puntaciones puntaciones;
 
     public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder, cerezaPrefab, cereza, fresaPrefab,
-        fresa;
+        fresa, manzanaPrefab, manzana;
 
     public Material azulMarino, rojo, rosa, azul, naranja;
     public bool efectoAzulActivado;
@@ -62,6 +62,8 @@ public class PacMan : MonoBehaviour
 
         puntos = GameObject.Find("Puntos").transform;
         control = GameObject.Find("Control").transform;
+
+        Invoke("Manzana", Random.Range(10, 61));
     }
 
     private void Update()
@@ -227,6 +229,13 @@ public class PacMan : MonoBehaviour
             CambiarPuntuacion();
             Destroy(other.gameObject);
         }
+
+        else if (other.CompareTag("Manzana"))
+        {
+            puntaciones.congelar = true;
+            Destroy(other.gameObject);
+            Invoke("Descongelar", 10);
+        }
     }
 
     public void DevolverColor()
@@ -303,5 +312,22 @@ public class PacMan : MonoBehaviour
     public void DestruirFresa()
     {
         if(fresa != null) Destroy(fresa);
+    }
+
+    public void DestruirManzana()
+    {
+        if (manzana != null) Destroy(manzana);
+    }
+
+    public void Manzana()
+    {
+        manzana = Instantiate<GameObject>(manzanaPrefab,
+                    control.GetChild(Random.Range(0, 21)).transform.position, Quaternion.identity);
+        Invoke("DestruirManzana", 20);
+    }
+
+    public void Descongelar()
+    {
+        puntaciones.congelar = false;
     }
 }
