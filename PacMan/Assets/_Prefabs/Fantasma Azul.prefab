@@ -111,9 +111,9 @@ GameObject:
   - component: {fileID: -807186817269699508}
   - component: {fileID: 6536822135016953019}
   - component: {fileID: -7671559098028199875}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fantasma Azul
-  m_TagString: Azul
+  m_TagString: Rojo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758277504813584094}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5935011
   m_Height: 1.6269491
@@ -214,7 +214,9 @@ MonoBehaviour:
     m_Bits: 64
   alerta: 0
   puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
-  coordenadaX: 0
+  coordenadaX: 0.7
+  azulMarino: {fileID: 2100000, guid: 178826b05c1e49641b6c5c246845c863, type: 2}
+  color: {fileID: 2100000, guid: 674f193a92f7b1a41af856dd5bb3f0d5, type: 2}
 --- !u!114 &-7671559098028199875
 MonoBehaviour:
   m_ObjectHideFlags: 0

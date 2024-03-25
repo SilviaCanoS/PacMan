@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ public class Fantasma : MonoBehaviour
 
     public Puntaciones puntaciones;
     public float coordenadaX;
+
+    public Material azulMarino, color;
 
     private void Start()
     {
@@ -42,8 +45,17 @@ public class Fantasma : MonoBehaviour
     {
         if (nav.remainingDistance < .5f) SiguientePunto();
 
-        if (puntaciones.efectoAzul) 
+        if (puntaciones.efectoAzul)
+        {
             GetComponent<NavMeshAgent>().destination = new Vector3(coordenadaX, 0, 0.9f);
+
+            var aux = gameObject.transform.GetChild(0);
+            aux.GetComponent<MeshRenderer>().material = azulMarino;
+            aux = gameObject.transform.GetChild(1);
+            aux.GetComponent<MeshRenderer>().material = azulMarino;
+
+            Invoke("DevolverColor", 10);
+        }
         else if(puntaciones.congelar) 
             GetComponent<NavMeshAgent>().destination = gameObject.transform.position;
         else
@@ -64,5 +76,13 @@ public class Fantasma : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, rangoAlerta); //dibuja la esfera de alerta
+    }
+
+    public void DevolverColor()
+    {
+        var aux = gameObject.transform.GetChild(0);
+        aux.GetComponent<MeshRenderer>().material = color;
+        aux = gameObject.transform.GetChild(1);
+        aux.GetComponent<MeshRenderer>().material = color;
     }
 }

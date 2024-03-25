@@ -698,9 +698,9 @@ GameObject:
   - component: {fileID: 6749312396268777674}
   - component: {fileID: -1840673514033455611}
   - component: {fileID: -7153452470606143076}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fantasma Naranja
-  m_TagString: Naranja
+  m_TagString: Rojo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -751,7 +751,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8723011939053886441}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.51489186
   m_Height: 1.7301769
@@ -779,7 +779,9 @@ MonoBehaviour:
     m_Bits: 64
   alerta: 0
   puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
-  coordenadaX: 0
+  coordenadaX: 2
+  azulMarino: {fileID: 2100000, guid: 178826b05c1e49641b6c5c246845c863, type: 2}
+  color: {fileID: 2100000, guid: bec23c61dbc4f884f854e02d0201c3fc, type: 2}
 --- !u!195 &-1840673514033455611
 NavMeshAgent:
   m_ObjectHideFlags: 0
