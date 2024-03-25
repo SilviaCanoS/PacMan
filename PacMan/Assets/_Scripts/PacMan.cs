@@ -22,7 +22,7 @@ public class PacMan : MonoBehaviour
     public TMPro.TMP_Text textPuntuacion;
     public Puntaciones puntaciones;
 
-    public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder, cerezaPrefab, cereza, fresaPrefab,
+    public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder, canvasGanar, cerezaPrefab, cereza, fresaPrefab,
         fresa, manzanaPrefab, manzana, mandarinaPrefab, mandarina;
 
     public bool efectoAzulActivado;
@@ -335,7 +335,9 @@ public class PacMan : MonoBehaviour
         {
             sourceGanar.Play();
             int escenaActual = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(escenaActual + 1);
+            if (SceneManager.sceneCountInBuildSettings > escenaActual + 1)
+                SceneManager.LoadScene(escenaActual + 1);
+            else canvasGanar.SetActive(true);
         }
     }
 }
