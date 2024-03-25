@@ -25,7 +25,6 @@ public class PacMan : MonoBehaviour
     public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder, cerezaPrefab, cereza, fresaPrefab,
         fresa, manzanaPrefab, manzana, mandarinaPrefab, mandarina;
 
-    public Material azulMarino, rojo, rosa, azul, naranja;
     public bool efectoAzulActivado;
 
     public Transform puntos, control;
@@ -90,73 +89,10 @@ public class PacMan : MonoBehaviour
         //camara.localRotation = Quaternion.Euler(rotacionX, 0, 0); //Camara arriba y abajo
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Punto"))
-        {
-            sourceComerPuntos.Play();
-            if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 5;
-            else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 10;
-            else puntuacion += 15;
-            CambiarPuntuacion();
-
-            if (other.transform.localScale.x == .4f)
-            {
-                puntuacion -= 100;
-                CambiarPuntuacion();
-                fresa = Instantiate<GameObject>(fresaPrefab, 
-                    control.GetChild(Random.Range(0, 21)).transform.position, Quaternion.identity);
-                Invoke("DestruirFresa", 20);
-            }
-
-            if (other.transform.localScale.x == 1)
-            {
-                if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 5;
-                else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 10;
-                else puntuacion += 15;
-                CambiarPuntuacion();
-
-                cereza = Instantiate<GameObject>(cerezaPrefab, cerezasCoord[Random.Range(0, 4)], 
-                    Quaternion.identity);
-
-                efectoAzulActivado = true;
-                puntaciones.efectoAzul = true;
-                sourceEfectoAzul.Play();
-                var aux = GameObject.FindGameObjectWithTag("Rojo").transform.GetChild(0);
-                aux.GetComponent<MeshRenderer>().material = azulMarino;
-                aux = GameObject.FindGameObjectWithTag("Rojo").transform.GetChild(1);
-                aux.GetComponent<MeshRenderer>().material = azulMarino;
-
-                aux = GameObject.FindGameObjectWithTag("Rosa").transform.GetChild(0);
-                aux.GetComponent<MeshRenderer>().material = azulMarino;
-                aux = GameObject.FindGameObjectWithTag("Rosa").transform.GetChild(1);
-                aux.GetComponent<MeshRenderer>().material = azulMarino;
-
-                aux = GameObject.FindGameObjectWithTag("Azul").transform.GetChild(0);
-                aux.GetComponent<MeshRenderer>().material = azulMarino;
-                aux = GameObject.FindGameObjectWithTag("Azul").transform.GetChild(1);
-                aux.GetComponent<MeshRenderer>().material = azulMarino;
-
-                aux = GameObject.FindGameObjectWithTag("Naranja").transform.GetChild(0);
-                aux.GetComponent<MeshRenderer>().material = azulMarino;
-                aux = GameObject.FindGameObjectWithTag("Naranja").transform.GetChild(1);
-                aux.GetComponent<MeshRenderer>().material = azulMarino;
-
-                Invoke("DevolverColor", 10);
-            }
-
-            if (puntos.childCount == 1)
-            {
-                sourceGanar.Play();
-                int escenaActual = SceneManager.GetActiveScene().buildIndex;
-                SceneManager.LoadScene(escenaActual + 1);
-            }
-            //puntaciones.Guardar();
-            Destroy(other.gameObject);
-        }
-
-        else if (other.CompareTag("Rojo") || other.CompareTag("Rosa") || other.CompareTag("Azul")
-            || other.CompareTag("Naranja"))
+        if (collision.gameObject.CompareTag("Rojo") || collision.gameObject.CompareTag("Rosa") || 
+            collision.gameObject.CompareTag("Azul") || collision.gameObject.CompareTag("Naranja"))
         {
             if (efectoAzulActivado)
             {
@@ -165,7 +101,7 @@ public class PacMan : MonoBehaviour
                 else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 200;
                 else puntuacion += 300;
                 CambiarPuntuacion();
-                Destroy(other.gameObject);
+                Destroy(collision.gameObject);
             }
             else
             {
@@ -211,6 +147,56 @@ public class PacMan : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Punto"))
+        {
+            sourceComerPuntos.Play();
+            if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 5;
+            else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 10;
+            else puntuacion += 15;
+            CambiarPuntuacion();
+
+            AvanzarNivel();
+            //puntaciones.Guardar();
+            Destroy(other.gameObject);
+        }
+
+        else if (other.CompareTag("PuntoAzul"))
+        {
+            sourceComerPuntos.Play();
+            if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 10;
+            else if (puntaciones.nivelDificultad == Puntaciones.Dificultad.normal) puntuacion += 20;
+            else puntuacion += 30;
+            CambiarPuntuacion();
+
+            cereza = Instantiate<GameObject>(cerezaPrefab, cerezasCoord[Random.Range(0, 4)],
+                    Quaternion.identity);
+
+            efectoAzulActivado = true;
+            puntaciones.efectoAzul = true;
+            sourceEfectoAzul.Play();
+            Invoke("DevolverColor", 10);
+
+            AvanzarNivel();
+            Destroy(other.gameObject);
+        }
+
+        else if (other.CompareTag("PuntoVerde"))
+        {
+            sourceComerPuntos.Play();
+            puntuacion -= 100;
+            CambiarPuntuacion();
+
+            fresa = Instantiate<GameObject>(fresaPrefab,
+                    control.GetChild(Random.Range(0, 21)).transform.position, Quaternion.identity);
+            Invoke("DestruirFresa", 20);
+
+            AvanzarNivel();
+            Destroy(other.gameObject);
+        }
 
         else if (other.CompareTag("Portal Derecho"))
             gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
@@ -254,25 +240,6 @@ public class PacMan : MonoBehaviour
 
     public void DevolverColor()
     {
-        var aux = GameObject.FindGameObjectWithTag("Rojo").transform.GetChild(0);
-        aux.GetComponent<MeshRenderer>().material = rojo;
-        aux = GameObject.FindGameObjectWithTag("Rojo").transform.GetChild(1);
-        aux.GetComponent<MeshRenderer>().material = rojo;
-
-        aux = GameObject.FindGameObjectWithTag("Rosa").transform.GetChild(0);
-        aux.GetComponent<MeshRenderer>().material = rosa;
-        aux = GameObject.FindGameObjectWithTag("Rosa").transform.GetChild(1);
-        aux.GetComponent<MeshRenderer>().material = rosa;
-
-        aux = GameObject.FindGameObjectWithTag("Azul").transform.GetChild(0);
-        aux.GetComponent<MeshRenderer>().material = azul;
-        aux = GameObject.FindGameObjectWithTag("Azul").transform.GetChild(1);
-        aux.GetComponent<MeshRenderer>().material = azul;
-
-        aux = GameObject.FindGameObjectWithTag("Naranja").transform.GetChild(0);
-        aux.GetComponent<MeshRenderer>().material = naranja;
-        aux = GameObject.FindGameObjectWithTag("Naranja").transform.GetChild(1);
-        aux.GetComponent<MeshRenderer>().material = naranja;
         sourceEfectoAzul.Stop();
         efectoAzulActivado = false;
         puntaciones.efectoAzul = false;
@@ -360,5 +327,15 @@ public class PacMan : MonoBehaviour
     public void Ralentizar()
     {
         caminar /= 2;
+    }
+
+    public void AvanzarNivel()
+    {
+        if (puntos.childCount == 1)
+        {
+            sourceGanar.Play();
+            int escenaActual = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(escenaActual + 1);
+        }
     }
 }

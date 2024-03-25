@@ -17,6 +17,8 @@ TagManager:
   - Fresa
   - Manzana
   - Mandarina
+  - PuntoAzul
+  - PuntoVere
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - Puntos
   - Radar
   - Escenario
-  - 
+  - Enemigos
   - 
   - 
   - 
