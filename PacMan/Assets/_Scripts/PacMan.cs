@@ -184,7 +184,7 @@ public class PacMan : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        else if (other.CompareTag("PuntoVerde"))
+        else if (other.CompareTag("PuntoVere"))
         {
             sourceComerPuntos.Play();
             puntuacion -= 100;
