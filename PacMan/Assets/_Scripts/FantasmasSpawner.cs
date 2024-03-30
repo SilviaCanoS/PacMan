@@ -39,6 +39,7 @@ public class FantasmasSpawner : MonoBehaviour
         {
             puntaciones.efectoAzul = false;
             naranja = Instantiate<GameObject>(prefabNaranja, transform.position, Quaternion.identity);   
+
         }
     }
 }
