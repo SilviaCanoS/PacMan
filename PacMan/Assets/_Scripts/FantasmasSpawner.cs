@@ -5,8 +5,7 @@ using UnityEngine;
 public class FantasmasSpawner : MonoBehaviour
 {
     public GameObject rojo, prefabRojo, rosa, prefabRosa, azul, prefabAzul, naranja, prefabNaranja;
-    public PacMan pacMan;
-    public Material azulMarino;
+    public Puntaciones puntaciones;
 
     private void Start()
     {
@@ -20,34 +19,26 @@ public class FantasmasSpawner : MonoBehaviour
     {
         if (rojo == null)
         {
+            puntaciones.efectoAzul = false;
             rojo = Instantiate<GameObject>(prefabRojo, transform.position, Quaternion.identity);
-            if (pacMan.efectoAzulActivado) EfectoAzul("Rojo");
         }
 
         if (rosa == null)
         {
+            puntaciones.efectoAzul = false;
             rosa = Instantiate<GameObject>(prefabRosa, transform.position, Quaternion.identity);
-            if (pacMan.efectoAzulActivado) EfectoAzul("Rosa");
         }
 
         if (azul == null)
         {
+            puntaciones.efectoAzul = false;
             azul = Instantiate<GameObject>(prefabAzul, transform.position, Quaternion.identity);
-            if (pacMan.efectoAzulActivado) EfectoAzul("Azul");
         }
 
         if (naranja == null)
         {
-            naranja = Instantiate<GameObject>(prefabNaranja, transform.position, Quaternion.identity);
-            if (pacMan.efectoAzulActivado) EfectoAzul("Naranja");
+            puntaciones.efectoAzul = false;
+            naranja = Instantiate<GameObject>(prefabNaranja, transform.position, Quaternion.identity);   
         }
-    }
-
-    public void EfectoAzul(string colores)
-    {
-        var aux = GameObject.FindGameObjectWithTag(colores).transform.GetChild(0);
-        aux.GetComponent<MeshRenderer>().material = azulMarino;
-        aux = GameObject.FindGameObjectWithTag(colores).transform.GetChild(1);
-        aux.GetComponent<MeshRenderer>().material = azulMarino;
     }
 }

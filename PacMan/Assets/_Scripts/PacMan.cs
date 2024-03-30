@@ -66,6 +66,9 @@ public class PacMan : MonoBehaviour
 
         Invoke("Manzana", Random.Range(10, 61));
         Invoke("Mandarina", Random.Range(10, 61));
+
+        puntaciones.efectoAzul = false;
+        puntaciones.congelar = false;
     }
 
     private void Update()
@@ -184,7 +187,7 @@ public class PacMan : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        else if (other.CompareTag("PuntoVerde"))
+        else if (other.CompareTag("PuntoVere"))
         {
             sourceComerPuntos.Play();
             puntuacion -= 100;

@@ -3,7 +3,17 @@ guid: 37c89e63c257ed041ab22875815fcd8e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rojo: {instanceID: 0}
+  - prefabRojo: {instanceID: 0}
+  - rosa: {instanceID: 0}
+  - prefabRosa: {instanceID: 0}
+  - azul: {instanceID: 0}
+  - prefabAzul: {instanceID: 0}
+  - naranja: {instanceID: 0}
+  - prefabNaranja: {instanceID: 0}
+  - sonidoFantasma: {instanceID: 0}
+  - puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

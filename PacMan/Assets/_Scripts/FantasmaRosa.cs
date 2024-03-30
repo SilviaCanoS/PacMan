@@ -21,7 +21,7 @@ public class FantasmaRosa : Fantasma
 
             Invoke("DevolverColor", 10);
         }
-        else if (puntaciones.congelar) 
+        else if (puntaciones.congelar)
             GetComponent<NavMeshAgent>().destination = gameObject.transform.position;
         else GetComponent<NavMeshAgent>().destination = jugador.position;
     }
