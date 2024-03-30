@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: -7671559098028199875}
   m_Layer: 10
   m_Name: Fantasma Azul
-  m_TagString: Rojo
+  m_TagString: Azul
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

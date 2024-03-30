@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: -7153452470606143076}
   m_Layer: 10
   m_Name: Fantasma Naranja
-  m_TagString: Rojo
+  m_TagString: Naranja
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
