@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Puntuaciones
   m_EditorClassIdentifier: 
   efectoAzul: 0
-  puntacionActual: 0
+  congelar: 0
+  muerte: 0
+  avanzar: 0
+  puntacionActual: 920
   nombreActual: Jugador
   nombres:
   - Jugador1
@@ -22,5 +25,5 @@ MonoBehaviour:
   - Jugador4
   - Jugador5
   - Jugador
-  puntos: 00000000000000000000000000000000000000004a010000
+  puntos: 00000000000000000000000000000000000000006a0e0000
   nivelDificultad: 1
