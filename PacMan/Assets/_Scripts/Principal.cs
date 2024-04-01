@@ -5,12 +5,41 @@ using UnityEngine.SceneManagement;
 
 public class Principal : MonoBehaviour
 {
-    public GameObject canvasPrincipal, canvasPausa, canvasPuntuacion, canvasControles;
+    public GameObject canvasPrincipal, canvasPausa, canvasPuntuacion, canvasControles, canvasPerder, 
+        canvasGanar, canvasAvanzar;
     public Puntaciones puntaciones;
 
     private void Update()
     {
         if(Input.GetKey(KeyCode.Space)) MostrarPausa();
+
+        if (puntaciones.muerte)
+        {
+            canvasPrincipal.SetActive(false);
+            canvasPerder.SetActive(true);
+            puntaciones.muerte = false;
+            Invoke("ReiniciarNivel", 5);
+        }
+
+        if(puntaciones.avanzar)
+        {
+            int escenaActual = SceneManager.GetActiveScene().buildIndex;
+            puntaciones.avanzar = false;
+            canvasPrincipal.SetActive(false);
+            GameObject.Find("PacMan").transform.position = new Vector3(0, 10, 0);
+            if (SceneManager.sceneCountInBuildSettings > escenaActual + 1)
+            {
+                canvasAvanzar.SetActive(true);
+                Invoke("SiguienteNivel", 5);
+            }
+            else canvasGanar.SetActive(true);
+        }
+    }
+
+    public void SiguienteNivel()
+    {
+        int escenaActual = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(escenaActual + 1);
     }
 
     public void MostrarPausa()

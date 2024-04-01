@@ -13,16 +13,16 @@ public class PacMan : MonoBehaviour
     Transform camara;
 
     GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul, sonidoComeFantasma,
-        sonidoPerder, sonidoGanar, sonidoFruta;
+        sonidoGanar, sonidoFruta, sonidoPerder;
     AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul,
-        sourceComeFantasma, sourcePerder, sourceGanar, sourceFruta;
+        sourceComeFantasma, sourceGanar, sourceFruta, sourcePerder;
 
     public int puntuacion = 0, vidas = 2, ref1up = 1000;
     public Transform transformPuntuacion;
     public TMPro.TMP_Text textPuntuacion;
     public Puntaciones puntaciones;
 
-    public GameObject vida1, vida2, vida3, vida4, vida5, canvasPerder, canvasGanar, cerezaPrefab, cereza, fresaPrefab,
+    public GameObject vida1, vida2, vida3, vida4, vida5, canvasGanar, cerezaPrefab, cereza, fresaPrefab,
         fresa, manzanaPrefab, manzana, mandarinaPrefab, mandarina;
 
     public bool efectoAzulActivado;
@@ -54,12 +54,12 @@ public class PacMan : MonoBehaviour
         sourceEfectoAzul = sonidoEfectoAzul.GetComponent<AudioSource>();
         sonidoComeFantasma = GameObject.Find("ComeFantasma");
         sourceComeFantasma = sonidoComeFantasma.GetComponent<AudioSource>();
-        sonidoPerder = GameObject.Find("Perder");
-        sourcePerder = sonidoPerder.GetComponent<AudioSource>();
         sonidoGanar = GameObject.Find("Ganar");
         sourceGanar = sonidoGanar.GetComponent<AudioSource>();
         sonidoFruta = GameObject.Find("Fruta");
         sourceFruta = sonidoFruta.GetComponent<AudioSource>();
+        sonidoPerder = GameObject.Find("Perder");
+        sourcePerder = sonidoPerder.GetComponent<AudioSource>();
 
         puntos = GameObject.Find("Puntos").transform;
         control = GameObject.Find("Control").transform;
@@ -139,11 +139,10 @@ public class PacMan : MonoBehaviour
                         break;
                     case 0:
                         vida3.GetComponent<Image>().color = Color.black;
-                        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                        canvasPerder.SetActive(true);
                         sourcePerder.Play();
-                        Invoke("Reiniciar", 3);
+                        puntaciones.muerte = true;
                         break;
+                    default: break;
                 }
             }
         }
@@ -257,17 +256,6 @@ public class PacMan : MonoBehaviour
         ref1up += 1000;
     }
 
-    public void Reiniciar()
-    {
-        if (puntaciones.puntacionActual > puntaciones.puntos[5])
-        {
-            puntaciones.puntos[5] = puntaciones.puntacionActual;
-            puntaciones.nombres[5] = puntaciones.nombreActual;
-        }
-        puntaciones.puntacionActual = 0;
-        SceneManager.LoadScene(0);
-    }
-
     public void VidaExtra()
     {
         if (vidas < 4) vidas++;
@@ -334,10 +322,7 @@ public class PacMan : MonoBehaviour
         if (puntos.childCount == 1)
         {
             sourceGanar.Play();
-            int escenaActual = SceneManager.GetActiveScene().buildIndex;
-            if (SceneManager.sceneCountInBuildSettings > escenaActual + 1)
-                SceneManager.LoadScene(escenaActual + 1);
-            else canvasGanar.SetActive(true);
+            puntaciones.avanzar = true;
         }
     }
 }

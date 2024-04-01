@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Puntuaciones", menuName = "Herramientas/ Puntuaciones", order = 0)]
 public class Puntaciones : ScriptableObjects
 {
-    public bool efectoAzul, congelar;
+    public bool efectoAzul, congelar, muerte, avanzar;
     public int puntacionActual = 0;
     public string nombreActual = "Jugador";
 
