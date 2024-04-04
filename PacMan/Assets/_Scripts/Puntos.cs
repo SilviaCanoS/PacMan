@@ -57,7 +57,6 @@ public class Puntos : MonoBehaviour
                 puntos[i].transform.GetChild(0).GetComponent<MeshRenderer>().material = color;
                 puntos[i].gameObject.tag = tag;
             }
-
         }
     }
 }
