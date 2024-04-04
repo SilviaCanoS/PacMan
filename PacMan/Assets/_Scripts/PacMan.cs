@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/**Esta clase controla a PacMan, que es a quien controla el jugador
+ */
 public class PacMan : MonoBehaviour
 {
     new Rigidbody rigidbody;
@@ -32,6 +34,15 @@ public class PacMan : MonoBehaviour
     public Vector3[] cerezasCoord = new Vector3[] {new Vector3(-4.5f, 0, 4), new Vector3(-4.5f, 0, -2),
                                                     new Vector3(4.5f, 0, 4), new Vector3(4.5f, 0, -2)};
 
+    /**Al iniciar se inicializan transformPuntuacion y textPuntuacion, que es donde se escribe la \n
+     * puntuacion del jugador en tiempo real \n
+     * Se inicializa el rigidbody de PacMan, la camara que hace que el juego se vea en primera persona \n
+     * y la rotacion en x de esa camara \n
+     * Se inicializan todos los efectos de sonido necesarios
+     * Se inicializa puntos, que es el objeto que guarda todos los puntos que PacMan debe comer y que \n
+     * aun estan en el escenario
+     * Se inicializa contro, que es el objeto que guarda todos los puntos de patrullaje del escenario
+     */
     private void Start()
     {
         transformPuntuacion = GameObject.Find("TextPuntuacion").transform;
@@ -68,6 +79,8 @@ public class PacMan : MonoBehaviour
         Invoke("Mandarina", Random.Range(10, 61));
     }
 
+    /**Se leen lasentradas que manda el usuario
+     */
     private void Update()
     {
         inputMov.x = Input.GetAxis("Horizontal");
@@ -77,6 +90,8 @@ public class PacMan : MonoBehaviour
         inputRot.y = Input.GetAxis("Mouse Y") * sensibilidadMouse;
     }
 
+    /**Actualiza la posición y rotación de PacMan segun las entradas del jugador
+     */
     private void FixedUpdate()
     {
         rigidbody.velocity = transform.forward * caminar * inputMov.y; //Avanzar adelante y atras
@@ -89,6 +104,10 @@ public class PacMan : MonoBehaviour
         //camara.localRotation = Quaternion.Euler(rotacionX, 0, 0); //Camara arriba y abajo
     }
 
+    /**Detecta las colisiones con los fantasmas \n
+     * en caso de que el efecto azul este activado PacMan se puede comer al fantasma \n
+     * en caso contrario el fantasma se puede comer a PacMan y pierde una vida
+     */
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Rojo") || collision.gameObject.CompareTag("Rosa") || 
@@ -148,6 +167,16 @@ public class PacMan : MonoBehaviour
         }
     }
 
+    /**Detecta los puntos que PacMan se tiene que comer \n
+     * si son puntos grandes activa el efecto para que PacMan se pueda comer a los fantasmas \n
+     * e instancia una cereza cerca de la base de los fantasmas \n
+     * si son puntos verdes resta puntuacion y genera una fresa en algun lugar del escenario \n
+     * Detecta los portales que teletransportan a PacMan al otro lado del escenario \n
+     * Detecta las cerezas, que dan una vida extra \n
+     * Detecta las fresas, que dan puntos extra \n
+     * Detecta las manzanas, que activan la funcion de congelar a los fantasmas un momento \n
+     * Detecta las naranjas, que aumentan la velocidad de PacMan
+     */
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Punto"))
@@ -237,6 +266,9 @@ public class PacMan : MonoBehaviour
         }
     }
 
+    /**Detiene el efecto que permite a PacMan comerse a los fantasmas y da unos segundos mas para \n 
+     * destruir la cereza si no la ha comido PacMan
+     */
     public void DevolverColor()
     {
         sourceEfectoAzul.Stop();
@@ -246,6 +278,9 @@ public class PacMan : MonoBehaviour
         Invoke("DestruirCereza", 10);
     }
 
+    /**Cambia la puntuacion en el registro \n
+     * Da una vida extra cada mil puntos alcanzados
+     */
     public void CambiarPuntuacion()
     {
         puntaciones.puntacionActual = puntuacion;
@@ -256,6 +291,8 @@ public class PacMan : MonoBehaviour
         ref1up += 1000;
     }
 
+    /**Agrega vidas segun se requiera
+     */
     public void VidaExtra()
     {
         if (vidas < 4) vidas++;
@@ -273,26 +310,36 @@ public class PacMan : MonoBehaviour
         }
     }
 
+    /**Destruye la cereza si PacMan no se la ha comido
+     */
     public void DestruirCereza()
     {
         if(cereza != null) Destroy(cereza);
     }
 
+    /**Destruye la fresa si PacMan no se la ha comido
+     */
     public void DestruirFresa()
     {
         if(fresa != null) Destroy(fresa);
     }
 
+    /**Destruye la manzana si PacMan no se la ha comido
+     */
     public void DestruirManzana()
     {
         if (manzana != null) Destroy(manzana);
     }
 
+    /**Destruye la naranja si PacMan no se la ha comido
+     */
     public void DestruirMandarina()
     {
         if (mandarina != null) Destroy(mandarina);
     }
 
+    /**Intancia una manzana en un lugar aleatorio del escenario y espera para destruirla
+     */
     public void Manzana()
     {
         manzana = Instantiate<GameObject>(manzanaPrefab,
@@ -300,6 +347,8 @@ public class PacMan : MonoBehaviour
         Invoke("DestruirManzana", 20);
     }
 
+    /**Intancia una naranja en un lugar aleatorio del escenario y espera para destruirla
+     */
     public void Mandarina()
     {
         mandarina = Instantiate<GameObject>(mandarinaPrefab,
@@ -307,16 +356,22 @@ public class PacMan : MonoBehaviour
         Invoke("DestruirMandarina", 20);
     }
 
+    /**Desactiva el efecto que congela a los fantasmas
+     */
     public void Descongelar()
     {
         puntaciones.congelar = false;
     }
 
+    /**Devuelve la velocidad normal a PacMan
+    */
     public void Ralentizar()
     {
         caminar /= 2;
     }
 
+    /**Analiza si PacMan ya se ha comido todos los puntos para avanzar de nivel o ganar
+    */
     public void AvanzarNivel()
     {
         if (puntos.childCount == 1)
