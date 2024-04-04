@@ -1,0 +1,506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PacMan: Laberinto Triimensional: Archivo de código fuente PacMan.cs</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">PacMan: Laberinto Triimensional<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Mi primer prototipo de Pac-Man en 3D</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('../../',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('dc/dbd/_pac_man_8cs_source.html','../../'); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">PacMan.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../dc/dbd/_pac_man_8cs.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System.Collections;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>System.Collections.Generic;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>Unity.VisualScripting;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>UnityEngine;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span>UnityEngine.SceneManagement;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using </span>UnityEngine.UI;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html">   10</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="../../dc/d1b/class_pac_man.html">PacMan</a> : MonoBehaviour</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">new</span> Rigidbody rigidbody;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    Vector2 inputMov, inputRot;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">float</span> caminar = 15f, sensibilidadMouse = 5f, rotacionX;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    Transform camara;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul, sonidoComeFantasma,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        sonidoGanar, sonidoFruta, sonidoPerder;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        sourceComeFantasma, sourceGanar, sourceFruta, sourcePerder;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">   22</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> = 0, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae6a71573c454f8e1e41dba3371774ee0">vidas</a> = 2, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a908bdf321c3d9d46d4416ecdcca37286">ref1up</a> = 1000;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a5eefa5cdaffbbaf605c77476fafcb9dc">   23</a></span>    <span class="keyword">public</span> Transform <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a5eefa5cdaffbbaf605c77476fafcb9dc">transformPuntuacion</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a6d04d61a15a1c770f87a66dbd09263bd">   24</a></span>    <span class="keyword">public</span> TMPro.TMP_Text <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a6d04d61a15a1c770f87a66dbd09263bd">textPuntuacion</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">   25</a></span>    <span class="keyword">public</span> Puntaciones <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">puntaciones</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#aafee57e4090797fbb9fd4022eab04707">   27</a></span>    <span class="keyword">public</span> GameObject <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ad8dd7c88f7c5a1f68950a2bb35699856">vida1</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae42aa6576a60f200c1409a36072eb68e">vida2</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a2062763eba116f486e80f935e35acd35">vida3</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ac6a8d3138372fcdfbbf030ba6553864d">vida4</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae7f9ca59eb2ce16db8952a0097900d38">vida5</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#aafee57e4090797fbb9fd4022eab04707">canvasGanar</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a26f89277a6d546f1be69c7db7567df01">cerezaPrefab</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#af398cd1f9f6ab97852fca18e0bffc893">cereza</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a7e19745d168cd05407dfa813348abafd">fresaPrefab</a>,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a3e5f497cab3e29e3b59039473cc01e78">   28</a></span>        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a3e5f497cab3e29e3b59039473cc01e78">fresa</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a83e4a458aeb5fee92765e85b8020545a">manzanaPrefab</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a300899ee8260d95f95558007f6a820f7">manzana</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#afcd288996a32c80df8f9e29910114a3e">mandarinaPrefab</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a28fb2d6a804333c82fb259e1dc97d978">mandarina</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a58f099d046a8b611b08a12307b870ee3">   30</a></span>    <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a58f099d046a8b611b08a12307b870ee3">efectoAzulActivado</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a4dbea3652fdb951d4ee0d929d6662dc8">   32</a></span>    <span class="keyword">public</span> Transform <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a6b0013def3ab0f37fdf3370bb58b8cca">puntos</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a4dbea3652fdb951d4ee0d929d6662dc8">control</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#ad7b7781a5cecabfa186582e5f23a191a">   34</a></span>    <span class="keyword">public</span> Vector3[] <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ad7b7781a5cecabfa186582e5f23a191a">cerezasCoord</a> = <span class="keyword">new</span> Vector3[] {<span class="keyword">new</span> Vector3(-4.5f, 0, 4), <span class="keyword">new</span> Vector3(-4.5f, 0, -2),</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                                                    <span class="keyword">new</span> Vector3(4.5f, 0, 4), <span class="keyword">new</span> Vector3(4.5f, 0, -2)};</div>
+</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> Start()</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a5eefa5cdaffbbaf605c77476fafcb9dc">transformPuntuacion</a> = GameObject.Find(<span class="stringliteral">&quot;TextPuntuacion&quot;</span>).transform;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a6d04d61a15a1c770f87a66dbd09263bd">textPuntuacion</a> = <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a5eefa5cdaffbbaf605c77476fafcb9dc">transformPuntuacion</a>.GetComponent&lt;TMPro.TMP_Text&gt;();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="comment">//puntaciones.Cargar();</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        rigidbody = GetComponent&lt;Rigidbody&gt;();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        camara = transform.GetChild(0); <span class="comment">//Toma al primer hijo</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        rotacionX = camara.eulerAngles.x;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        sonidoComerPuntos = GameObject.Find(<span class="stringliteral">&quot;ComerPunto&quot;</span>);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        sourceComerPuntos = sonidoComerPuntos.GetComponent&lt;AudioSource&gt;();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        sonidoIniciarJuego = GameObject.Find(<span class="stringliteral">&quot;iniciarJuego&quot;</span>);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        sourceIniciarJuego = sonidoIniciarJuego.GetComponent&lt;AudioSource&gt;();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        sourceIniciarJuego.Play();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ad8dd7c88f7c5a1f68950a2bb35699856">vida1</a>.GetComponent&lt;Image&gt;().color = Color.black;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        sonidoPacManMuere = GameObject.Find(<span class="stringliteral">&quot;PacManMuere&quot;</span>);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        sourcePacManMuere = sonidoPacManMuere.GetComponent&lt;AudioSource&gt;();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        sonidoEfectoAzul = GameObject.Find(<span class="stringliteral">&quot;EfectoAzul&quot;</span>);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        sourceEfectoAzul = sonidoEfectoAzul.GetComponent&lt;AudioSource&gt;();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        sonidoComeFantasma = GameObject.Find(<span class="stringliteral">&quot;ComeFantasma&quot;</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        sourceComeFantasma = sonidoComeFantasma.GetComponent&lt;AudioSource&gt;();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        sonidoGanar = GameObject.Find(<span class="stringliteral">&quot;Ganar&quot;</span>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        sourceGanar = sonidoGanar.GetComponent&lt;AudioSource&gt;();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        sonidoFruta = GameObject.Find(<span class="stringliteral">&quot;Fruta&quot;</span>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        sourceFruta = sonidoFruta.GetComponent&lt;AudioSource&gt;();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        sonidoPerder = GameObject.Find(<span class="stringliteral">&quot;Perder&quot;</span>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        sourcePerder = sonidoPerder.GetComponent&lt;AudioSource&gt;();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a6b0013def3ab0f37fdf3370bb58b8cca">puntos</a> = GameObject.Find(<span class="stringliteral">&quot;Puntos&quot;</span>).transform;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a4dbea3652fdb951d4ee0d929d6662dc8">control</a> = GameObject.Find(<span class="stringliteral">&quot;Control&quot;</span>).transform;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        Invoke(<span class="stringliteral">&quot;Manzana&quot;</span>, Random.Range(10, 61));</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        Invoke(<span class="stringliteral">&quot;Mandarina&quot;</span>, Random.Range(10, 61));</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> Update()</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        inputMov.x = Input.GetAxis(<span class="stringliteral">&quot;Horizontal&quot;</span>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        inputMov.y = Input.GetAxis(<span class="stringliteral">&quot;Vertical&quot;</span>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        inputRot.x = Input.GetAxis(<span class="stringliteral">&quot;Horizontal&quot;</span>) * sensibilidadMouse;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        inputRot.y = Input.GetAxis(<span class="stringliteral">&quot;Mouse Y&quot;</span>) * sensibilidadMouse;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> FixedUpdate()</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        rigidbody.velocity = transform.forward * caminar * inputMov.y; <span class="comment">//Avanzar adelante y atras</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                                <span class="comment">//+ transform.right * caminar * inputMov.x; //Avanzar izquierda y derecha</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        transform.rotation *= Quaternion.Euler(0, inputRot.x, 0); <span class="comment">//Camara izquiera y derecha</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="comment">//rotacionX -= inputRot.y;</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="comment">//rotacionX = Mathf.Clamp(rotacionX, -50f, 50f);</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="comment">//camara.localRotation = Quaternion.Euler(rotacionX, 0, 0); //Camara arriba y abajo</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> OnCollisionEnter(Collision collision)</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">if</span> (collision.gameObject.CompareTag(<span class="stringliteral">&quot;Rojo&quot;</span>) || collision.gameObject.CompareTag(<span class="stringliteral">&quot;Rosa&quot;</span>) || </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            collision.gameObject.CompareTag(<span class="stringliteral">&quot;Azul&quot;</span>) || collision.gameObject.CompareTag(<span class="stringliteral">&quot;Naranja&quot;</span>))</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a58f099d046a8b611b08a12307b870ee3">efectoAzulActivado</a>)</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                sourceComeFantasma.Play();</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">puntaciones</a>.nivelDificultad == Puntaciones.Dificultad.facil) <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 100;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">puntaciones</a>.nivelDificultad == Puntaciones.Dificultad.normal) <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 200;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                <span class="keywordflow">else</span> <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 300;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#ad9053578afb8cce93ba734f0d8e989b1">CambiarPuntuacion</a>();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                Destroy(collision.gameObject);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                <span class="keywordflow">switch</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae6a71573c454f8e1e41dba3371774ee0">vidas</a>)</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                    <span class="keywordflow">case</span> 4:</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                        sourcePacManMuere.Play();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae7f9ca59eb2ce16db8952a0097900d38">vida5</a>.SetActive(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ac6a8d3138372fcdfbbf030ba6553864d">vida4</a>.GetComponent&lt;Image&gt;().color = Color.black;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae6a71573c454f8e1e41dba3371774ee0">vidas</a>--;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                        sourceIniciarJuego.Play();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                        gameObject.transform.position = <span class="keyword">new</span> Vector3(-23.5f, -0.5f, 1f);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                    <span class="keywordflow">case</span> 3:</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                        sourcePacManMuere.Play();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ac6a8d3138372fcdfbbf030ba6553864d">vida4</a>.SetActive(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ad8dd7c88f7c5a1f68950a2bb35699856">vida1</a>.GetComponent&lt;Image&gt;().color = Color.black;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae6a71573c454f8e1e41dba3371774ee0">vidas</a>--;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>                        sourceIniciarJuego.Play();</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                        gameObject.transform.position = <span class="keyword">new</span> Vector3(-23.5f, -0.5f, 1f);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                    <span class="keywordflow">case</span> 2:</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                        sourcePacManMuere.Play();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ad8dd7c88f7c5a1f68950a2bb35699856">vida1</a>.GetComponent&lt;Image&gt;().color = Color.black;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae6a71573c454f8e1e41dba3371774ee0">vidas</a>--;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                        sourceIniciarJuego.Play();</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                        gameObject.transform.position = <span class="keyword">new</span> Vector3(-23.5f, -0.5f, 1f);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                    <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                        sourcePacManMuere.Play();</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae42aa6576a60f200c1409a36072eb68e">vida2</a>.GetComponent&lt;Image&gt;().color = Color.black;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae6a71573c454f8e1e41dba3371774ee0">vidas</a>--;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                        sourceIniciarJuego.Play();</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                        gameObject.transform.position = <span class="keyword">new</span> Vector3(-23.5f, -0.5f, 1f);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                    <span class="keywordflow">case</span> 0:</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a2062763eba116f486e80f935e35acd35">vida3</a>.GetComponent&lt;Image&gt;().color = Color.black;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                        sourcePerder.Play();</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                        puntaciones.muerte = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>                    <span class="keywordflow">default</span>: <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                }</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>            }</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        }</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    }</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> OnTriggerEnter(Collider other)</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <span class="keywordflow">if</span> (other.CompareTag(<span class="stringliteral">&quot;Punto&quot;</span>))</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        {</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>            sourceComerPuntos.Play();</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">puntaciones</a>.nivelDificultad == Puntaciones.Dificultad.facil) <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 5;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">puntaciones</a>.nivelDificultad == Puntaciones.Dificultad.normal) <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 10;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>            <span class="keywordflow">else</span> <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 15;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#ad9053578afb8cce93ba734f0d8e989b1">CambiarPuntuacion</a>();</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>            <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#a8c647b3c486177b443bf3de0826d486b">AvanzarNivel</a>();</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>            <span class="comment">//puntaciones.Guardar();</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>            Destroy(other.gameObject);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        }</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (other.CompareTag(<span class="stringliteral">&quot;PuntoAzul&quot;</span>))</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            sourceComerPuntos.Play();</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">puntaciones</a>.nivelDificultad == Puntaciones.Dificultad.facil) <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 10;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">puntaciones</a>.nivelDificultad == Puntaciones.Dificultad.normal) <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 20;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            <span class="keywordflow">else</span> <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 30;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#ad9053578afb8cce93ba734f0d8e989b1">CambiarPuntuacion</a>();</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>            <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#af398cd1f9f6ab97852fca18e0bffc893">cereza</a> = Instantiate&lt;GameObject&gt;(<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a26f89277a6d546f1be69c7db7567df01">cerezaPrefab</a>, <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ad7b7781a5cecabfa186582e5f23a191a">cerezasCoord</a>[Random.Range(0, 4)],</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                    Quaternion.identity);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>            <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a58f099d046a8b611b08a12307b870ee3">efectoAzulActivado</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>            puntaciones.efectoAzul = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            sourceEfectoAzul.Play();</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            Invoke(<span class="stringliteral">&quot;DevolverColor&quot;</span>, 10);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#a8c647b3c486177b443bf3de0826d486b">AvanzarNivel</a>();</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>            Destroy(other.gameObject);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        }</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (other.CompareTag(<span class="stringliteral">&quot;PuntoVere&quot;</span>))</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            sourceComerPuntos.Play();</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> -= 100;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#ad9053578afb8cce93ba734f0d8e989b1">CambiarPuntuacion</a>();</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>            <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a3e5f497cab3e29e3b59039473cc01e78">fresa</a> = Instantiate&lt;GameObject&gt;(<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a7e19745d168cd05407dfa813348abafd">fresaPrefab</a>,</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>                    <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a4dbea3652fdb951d4ee0d929d6662dc8">control</a>.GetChild(Random.Range(0, 21)).transform.position, Quaternion.identity);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>            Invoke(<span class="stringliteral">&quot;DestruirFresa&quot;</span>, 20);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>            <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#a8c647b3c486177b443bf3de0826d486b">AvanzarNivel</a>();</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>            Destroy(other.gameObject);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        }</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (other.CompareTag(<span class="stringliteral">&quot;Portal Derecho&quot;</span>))</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>            gameObject.transform.position = <span class="keyword">new</span> Vector3(-23.5f, -0.5f, 1f);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (other.CompareTag(<span class="stringliteral">&quot;Portal Izquierdo&quot;</span>))</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            gameObject.transform.position = <span class="keyword">new</span> Vector3(23.5f, -0.5f, 1f);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (other.CompareTag(<span class="stringliteral">&quot;Cereza&quot;</span>))</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>            sourceFruta.Play();</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>            <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#a0ebb8a2b231336ed9b4f23a67839d64d">VidaExtra</a>();</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>            Destroy(other.gameObject);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        }</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (other.CompareTag(<span class="stringliteral">&quot;Fresa&quot;</span>))</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        {</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>            sourceFruta.Play();</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">puntaciones</a>.nivelDificultad == Puntaciones.Dificultad.facil) <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 100;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">puntaciones</a>.nivelDificultad == Puntaciones.Dificultad.normal) <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 150;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>            <span class="keywordflow">else</span> <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a> += 250;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>            <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#ad9053578afb8cce93ba734f0d8e989b1">CambiarPuntuacion</a>();</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>            Destroy(other.gameObject);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        }</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (other.CompareTag(<span class="stringliteral">&quot;Manzana&quot;</span>))</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>            sourceFruta.Play();</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>            puntaciones.congelar = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>            Destroy(other.gameObject);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            Invoke(<span class="stringliteral">&quot;Descongelar&quot;</span>, 10);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        }</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (other.CompareTag(<span class="stringliteral">&quot;Mandarina&quot;</span>))</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        {</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            sourceFruta.Play();</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            caminar *= 2;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>            Destroy(other.gameObject);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            Invoke(<span class="stringliteral">&quot;Ralentizar&quot;</span>, 10);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        }</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    }</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="foldopen" id="foldopen00272" data-start="{" data-end="}">
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#ace1b0f8297583e3e86394a57963f746b">  272</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#ace1b0f8297583e3e86394a57963f746b">DevolverColor</a>()</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    {</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        sourceEfectoAzul.Stop();</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a58f099d046a8b611b08a12307b870ee3">efectoAzulActivado</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        puntaciones.efectoAzul = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        Invoke(<span class="stringliteral">&quot;DestruirCereza&quot;</span>, 10);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    }</div>
+</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="foldopen" id="foldopen00284" data-start="{" data-end="}">
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#ad9053578afb8cce93ba734f0d8e989b1">  284</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#ad9053578afb8cce93ba734f0d8e989b1">CambiarPuntuacion</a>()</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    {</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        puntaciones.puntacionActual = <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a>;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>        textPuntuacion.text = <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">puntuacion</a>.ToString();</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="comment">//Consigue 1up cada 1000 puntos</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">puntaciones</a>.puntacionActual &gt;= <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a908bdf321c3d9d46d4416ecdcca37286">ref1up</a>) <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#a0ebb8a2b231336ed9b4f23a67839d64d">VidaExtra</a>();   </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a908bdf321c3d9d46d4416ecdcca37286">ref1up</a> += 1000;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    }</div>
+</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="foldopen" id="foldopen00296" data-start="{" data-end="}">
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a0ebb8a2b231336ed9b4f23a67839d64d">  296</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#a0ebb8a2b231336ed9b4f23a67839d64d">VidaExtra</a>()</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    {</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae6a71573c454f8e1e41dba3371774ee0">vidas</a> &lt; 4) <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae6a71573c454f8e1e41dba3371774ee0">vidas</a>++;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        <span class="keywordflow">switch</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae6a71573c454f8e1e41dba3371774ee0">vidas</a>)</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>        {</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>            <span class="keywordflow">case</span> 2: <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae42aa6576a60f200c1409a36072eb68e">vida2</a>.GetComponent&lt;Image&gt;().color = Color.white; <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>            <span class="keywordflow">case</span> 3:</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>                <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ad8dd7c88f7c5a1f68950a2bb35699856">vida1</a>.GetComponent&lt;Image&gt;().color = Color.white;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>                <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ac6a8d3138372fcdfbbf030ba6553864d">vida4</a>.SetActive(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>                <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ac6a8d3138372fcdfbbf030ba6553864d">vida4</a>.GetComponent&lt;Image&gt;().color = Color.black;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>            <span class="keywordflow">case</span> 4:</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>                <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ac6a8d3138372fcdfbbf030ba6553864d">vida4</a>.GetComponent&lt;Image&gt;().color = Color.white;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>                <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#ae7f9ca59eb2ce16db8952a0097900d38">vida5</a>.SetActive(<span class="keyword">true</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    }</div>
+</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="foldopen" id="foldopen00315" data-start="{" data-end="}">
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#aa1eb95b5b8dab76598b403255db40d8e">  315</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#aa1eb95b5b8dab76598b403255db40d8e">DestruirCereza</a>()</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    {</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#af398cd1f9f6ab97852fca18e0bffc893">cereza</a> != <span class="keyword">null</span>) Destroy(<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#af398cd1f9f6ab97852fca18e0bffc893">cereza</a>);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    }</div>
+</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="foldopen" id="foldopen00322" data-start="{" data-end="}">
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#ae18e5740d3e53c7de0a414cd9519f886">  322</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#ae18e5740d3e53c7de0a414cd9519f886">DestruirFresa</a>()</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    {</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a3e5f497cab3e29e3b59039473cc01e78">fresa</a> != <span class="keyword">null</span>) Destroy(<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a3e5f497cab3e29e3b59039473cc01e78">fresa</a>);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    }</div>
+</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
+<div class="foldopen" id="foldopen00329" data-start="{" data-end="}">
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#aa3a32c13704bd0ca71226f908d6f7f70">  329</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#aa3a32c13704bd0ca71226f908d6f7f70">DestruirManzana</a>()</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    {</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a300899ee8260d95f95558007f6a820f7">manzana</a> != <span class="keyword">null</span>) Destroy(<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a300899ee8260d95f95558007f6a820f7">manzana</a>);</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    }</div>
+</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="foldopen" id="foldopen00336" data-start="{" data-end="}">
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a8a75018360d7ff761bc888118fe79a9a">  336</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#a8a75018360d7ff761bc888118fe79a9a">DestruirMandarina</a>()</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    {</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a28fb2d6a804333c82fb259e1dc97d978">mandarina</a> != <span class="keyword">null</span>) Destroy(<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a28fb2d6a804333c82fb259e1dc97d978">mandarina</a>);</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    }</div>
+</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="foldopen" id="foldopen00343" data-start="{" data-end="}">
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#ad649c34cc5be40dcfaff6469e5e86edd">  343</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#ad649c34cc5be40dcfaff6469e5e86edd">Manzana</a>()</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    {</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a300899ee8260d95f95558007f6a820f7">manzana</a> = Instantiate&lt;GameObject&gt;(<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a83e4a458aeb5fee92765e85b8020545a">manzanaPrefab</a>,</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>                    <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a4dbea3652fdb951d4ee0d929d6662dc8">control</a>.GetChild(Random.Range(0, 21)).transform.position, Quaternion.identity);</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        Invoke(<span class="stringliteral">&quot;DestruirManzana&quot;</span>, 20);</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    }</div>
+</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="foldopen" id="foldopen00352" data-start="{" data-end="}">
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a41c57bb102fb6e9229e5496c0aed2d53">  352</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#a41c57bb102fb6e9229e5496c0aed2d53">Mandarina</a>()</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    {</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>        <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a28fb2d6a804333c82fb259e1dc97d978">mandarina</a> = Instantiate&lt;GameObject&gt;(<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#afcd288996a32c80df8f9e29910114a3e">mandarinaPrefab</a>,</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>                    <a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a4dbea3652fdb951d4ee0d929d6662dc8">control</a>.GetChild(Random.Range(0, 21)).transform.position, Quaternion.identity);</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>        Invoke(<span class="stringliteral">&quot;DestruirMandarina&quot;</span>, 20);</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    }</div>
+</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
+<div class="foldopen" id="foldopen00361" data-start="{" data-end="}">
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#ab385f7d954d7aef6a0b6808c00979d24">  361</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#ab385f7d954d7aef6a0b6808c00979d24">Descongelar</a>()</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    {</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>        puntaciones.congelar = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    }</div>
+</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="foldopen" id="foldopen00368" data-start="{" data-end="}">
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a59b749779aba497c91c46ebed73839c4">  368</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#a59b749779aba497c91c46ebed73839c4">Ralentizar</a>()</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    {</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        caminar /= 2;</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    }</div>
+</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="foldopen" id="foldopen00375" data-start="{" data-end="}">
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno"><a class="line" href="../../dc/d1b/class_pac_man.html#a8c647b3c486177b443bf3de0826d486b">  375</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d1b/class_pac_man.html#a8c647b3c486177b443bf3de0826d486b">AvanzarNivel</a>()</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    {</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/d1b/class_pac_man.html#a6b0013def3ab0f37fdf3370bb58b8cca">puntos</a>.childCount == 1)</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>        {</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>            sourceGanar.Play();</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>            puntaciones.avanzar = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        }</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    }</div>
+</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>}</div>
+</div>
+<div class="ttc" id="aclass_pac_man_html"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html">PacMan</a></div><div class="ttdoc">Esta clase controla a PacMan, que es a quien controla el jugador.</div><div class="ttdef"><b>Definition</b> <a href="#l00010">PacMan.cs:11</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a0ebb8a2b231336ed9b4f23a67839d64d"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a0ebb8a2b231336ed9b4f23a67839d64d">PacMan.VidaExtra</a></div><div class="ttdeci">void VidaExtra()</div><div class="ttdoc">Agrega vidas segun se requiera.</div><div class="ttdef"><b>Definition</b> <a href="#l00296">PacMan.cs:296</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a2062763eba116f486e80f935e35acd35"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a2062763eba116f486e80f935e35acd35">PacMan.vida3</a></div><div class="ttdeci">GameObject vida3</div><div class="ttdef"><b>Definition</b> <a href="#l00027">PacMan.cs:27</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a26f89277a6d546f1be69c7db7567df01"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a26f89277a6d546f1be69c7db7567df01">PacMan.cerezaPrefab</a></div><div class="ttdeci">GameObject cerezaPrefab</div><div class="ttdef"><b>Definition</b> <a href="#l00027">PacMan.cs:27</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a28fb2d6a804333c82fb259e1dc97d978"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a28fb2d6a804333c82fb259e1dc97d978">PacMan.mandarina</a></div><div class="ttdeci">GameObject mandarina</div><div class="ttdef"><b>Definition</b> <a href="#l00028">PacMan.cs:28</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a300899ee8260d95f95558007f6a820f7"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a300899ee8260d95f95558007f6a820f7">PacMan.manzana</a></div><div class="ttdeci">GameObject manzana</div><div class="ttdef"><b>Definition</b> <a href="#l00028">PacMan.cs:28</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a3e5f497cab3e29e3b59039473cc01e78"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a3e5f497cab3e29e3b59039473cc01e78">PacMan.fresa</a></div><div class="ttdeci">GameObject fresa</div><div class="ttdef"><b>Definition</b> <a href="#l00028">PacMan.cs:28</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a41c57bb102fb6e9229e5496c0aed2d53"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a41c57bb102fb6e9229e5496c0aed2d53">PacMan.Mandarina</a></div><div class="ttdeci">void Mandarina()</div><div class="ttdoc">Intancia una naranja en un lugar aleatorio del escenario y espera para destruirla.</div><div class="ttdef"><b>Definition</b> <a href="#l00352">PacMan.cs:352</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a477f5720f03eee80b2db7e2618858e8c"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a477f5720f03eee80b2db7e2618858e8c">PacMan.puntaciones</a></div><div class="ttdeci">Puntaciones puntaciones</div><div class="ttdef"><b>Definition</b> <a href="#l00025">PacMan.cs:25</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a4dbea3652fdb951d4ee0d929d6662dc8"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a4dbea3652fdb951d4ee0d929d6662dc8">PacMan.control</a></div><div class="ttdeci">Transform control</div><div class="ttdef"><b>Definition</b> <a href="#l00032">PacMan.cs:32</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a58f099d046a8b611b08a12307b870ee3"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a58f099d046a8b611b08a12307b870ee3">PacMan.efectoAzulActivado</a></div><div class="ttdeci">bool efectoAzulActivado</div><div class="ttdef"><b>Definition</b> <a href="#l00030">PacMan.cs:30</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a59b749779aba497c91c46ebed73839c4"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a59b749779aba497c91c46ebed73839c4">PacMan.Ralentizar</a></div><div class="ttdeci">void Ralentizar()</div><div class="ttdoc">Devuelve la velocidad normal a PacMan.</div><div class="ttdef"><b>Definition</b> <a href="#l00368">PacMan.cs:368</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a5eefa5cdaffbbaf605c77476fafcb9dc"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a5eefa5cdaffbbaf605c77476fafcb9dc">PacMan.transformPuntuacion</a></div><div class="ttdeci">Transform transformPuntuacion</div><div class="ttdef"><b>Definition</b> <a href="#l00023">PacMan.cs:23</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a6b0013def3ab0f37fdf3370bb58b8cca"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a6b0013def3ab0f37fdf3370bb58b8cca">PacMan.puntos</a></div><div class="ttdeci">Transform puntos</div><div class="ttdef"><b>Definition</b> <a href="#l00032">PacMan.cs:32</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a6d04d61a15a1c770f87a66dbd09263bd"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a6d04d61a15a1c770f87a66dbd09263bd">PacMan.textPuntuacion</a></div><div class="ttdeci">TMPro.TMP_Text textPuntuacion</div><div class="ttdef"><b>Definition</b> <a href="#l00024">PacMan.cs:24</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a79a5e79da2cf75919b1b743bafc19698"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a79a5e79da2cf75919b1b743bafc19698">PacMan.puntuacion</a></div><div class="ttdeci">int puntuacion</div><div class="ttdef"><b>Definition</b> <a href="#l00022">PacMan.cs:22</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a7e19745d168cd05407dfa813348abafd"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a7e19745d168cd05407dfa813348abafd">PacMan.fresaPrefab</a></div><div class="ttdeci">GameObject fresaPrefab</div><div class="ttdef"><b>Definition</b> <a href="#l00027">PacMan.cs:27</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a83e4a458aeb5fee92765e85b8020545a"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a83e4a458aeb5fee92765e85b8020545a">PacMan.manzanaPrefab</a></div><div class="ttdeci">GameObject manzanaPrefab</div><div class="ttdef"><b>Definition</b> <a href="#l00028">PacMan.cs:28</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a8a75018360d7ff761bc888118fe79a9a"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a8a75018360d7ff761bc888118fe79a9a">PacMan.DestruirMandarina</a></div><div class="ttdeci">void DestruirMandarina()</div><div class="ttdoc">Destruye la naranja si PacMan no se la ha comido.</div><div class="ttdef"><b>Definition</b> <a href="#l00336">PacMan.cs:336</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a8c647b3c486177b443bf3de0826d486b"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a8c647b3c486177b443bf3de0826d486b">PacMan.AvanzarNivel</a></div><div class="ttdeci">void AvanzarNivel()</div><div class="ttdoc">Analiza si PacMan ya se ha comido todos los puntos para avanzar de nivel o ganar.</div><div class="ttdef"><b>Definition</b> <a href="#l00375">PacMan.cs:375</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_a908bdf321c3d9d46d4416ecdcca37286"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#a908bdf321c3d9d46d4416ecdcca37286">PacMan.ref1up</a></div><div class="ttdeci">int ref1up</div><div class="ttdef"><b>Definition</b> <a href="#l00022">PacMan.cs:22</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_aa1eb95b5b8dab76598b403255db40d8e"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#aa1eb95b5b8dab76598b403255db40d8e">PacMan.DestruirCereza</a></div><div class="ttdeci">void DestruirCereza()</div><div class="ttdoc">Destruye la cereza si PacMan no se la ha comido.</div><div class="ttdef"><b>Definition</b> <a href="#l00315">PacMan.cs:315</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_aa3a32c13704bd0ca71226f908d6f7f70"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#aa3a32c13704bd0ca71226f908d6f7f70">PacMan.DestruirManzana</a></div><div class="ttdeci">void DestruirManzana()</div><div class="ttdoc">Destruye la manzana si PacMan no se la ha comido.</div><div class="ttdef"><b>Definition</b> <a href="#l00329">PacMan.cs:329</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_aafee57e4090797fbb9fd4022eab04707"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#aafee57e4090797fbb9fd4022eab04707">PacMan.canvasGanar</a></div><div class="ttdeci">GameObject canvasGanar</div><div class="ttdef"><b>Definition</b> <a href="#l00027">PacMan.cs:27</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ab385f7d954d7aef6a0b6808c00979d24"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ab385f7d954d7aef6a0b6808c00979d24">PacMan.Descongelar</a></div><div class="ttdeci">void Descongelar()</div><div class="ttdoc">Desactiva el efecto que congela a los fantasmas.</div><div class="ttdef"><b>Definition</b> <a href="#l00361">PacMan.cs:361</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ac6a8d3138372fcdfbbf030ba6553864d"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ac6a8d3138372fcdfbbf030ba6553864d">PacMan.vida4</a></div><div class="ttdeci">GameObject vida4</div><div class="ttdef"><b>Definition</b> <a href="#l00027">PacMan.cs:27</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ace1b0f8297583e3e86394a57963f746b"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ace1b0f8297583e3e86394a57963f746b">PacMan.DevolverColor</a></div><div class="ttdeci">void DevolverColor()</div><div class="ttdoc">Detiene el efecto que permite a PacMan comerse a los fantasmas y da unos segundos mas para   destruir...</div><div class="ttdef"><b>Definition</b> <a href="#l00272">PacMan.cs:272</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ad649c34cc5be40dcfaff6469e5e86edd"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ad649c34cc5be40dcfaff6469e5e86edd">PacMan.Manzana</a></div><div class="ttdeci">void Manzana()</div><div class="ttdoc">Intancia una manzana en un lugar aleatorio del escenario y espera para destruirla.</div><div class="ttdef"><b>Definition</b> <a href="#l00343">PacMan.cs:343</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ad7b7781a5cecabfa186582e5f23a191a"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ad7b7781a5cecabfa186582e5f23a191a">PacMan.cerezasCoord</a></div><div class="ttdeci">Vector3[] cerezasCoord</div><div class="ttdef"><b>Definition</b> <a href="#l00034">PacMan.cs:34</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ad8dd7c88f7c5a1f68950a2bb35699856"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ad8dd7c88f7c5a1f68950a2bb35699856">PacMan.vida1</a></div><div class="ttdeci">GameObject vida1</div><div class="ttdef"><b>Definition</b> <a href="#l00027">PacMan.cs:27</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ad9053578afb8cce93ba734f0d8e989b1"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ad9053578afb8cce93ba734f0d8e989b1">PacMan.CambiarPuntuacion</a></div><div class="ttdeci">void CambiarPuntuacion()</div><div class="ttdoc">Cambia la puntuacion en el registro  Da una vida extra cada mil puntos alcanzados.</div><div class="ttdef"><b>Definition</b> <a href="#l00284">PacMan.cs:284</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ae18e5740d3e53c7de0a414cd9519f886"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ae18e5740d3e53c7de0a414cd9519f886">PacMan.DestruirFresa</a></div><div class="ttdeci">void DestruirFresa()</div><div class="ttdoc">Destruye la fresa si PacMan no se la ha comido.</div><div class="ttdef"><b>Definition</b> <a href="#l00322">PacMan.cs:322</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ae42aa6576a60f200c1409a36072eb68e"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ae42aa6576a60f200c1409a36072eb68e">PacMan.vida2</a></div><div class="ttdeci">GameObject vida2</div><div class="ttdef"><b>Definition</b> <a href="#l00027">PacMan.cs:27</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ae6a71573c454f8e1e41dba3371774ee0"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ae6a71573c454f8e1e41dba3371774ee0">PacMan.vidas</a></div><div class="ttdeci">int vidas</div><div class="ttdef"><b>Definition</b> <a href="#l00022">PacMan.cs:22</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_ae7f9ca59eb2ce16db8952a0097900d38"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#ae7f9ca59eb2ce16db8952a0097900d38">PacMan.vida5</a></div><div class="ttdeci">GameObject vida5</div><div class="ttdef"><b>Definition</b> <a href="#l00027">PacMan.cs:27</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_af398cd1f9f6ab97852fca18e0bffc893"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#af398cd1f9f6ab97852fca18e0bffc893">PacMan.cereza</a></div><div class="ttdeci">GameObject cereza</div><div class="ttdef"><b>Definition</b> <a href="#l00027">PacMan.cs:27</a></div></div>
+<div class="ttc" id="aclass_pac_man_html_afcd288996a32c80df8f9e29910114a3e"><div class="ttname"><a href="../../dc/d1b/class_pac_man.html#afcd288996a32c80df8f9e29910114a3e">PacMan.mandarinaPrefab</a></div><div class="ttdeci">GameObject mandarinaPrefab</div><div class="ttdef"><b>Definition</b> <a href="#l00028">PacMan.cs:28</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dc/dbd/_pac_man_8cs.html">PacMan.cs</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>
