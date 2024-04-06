@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Tabla : MonoBehaviour
@@ -15,6 +16,21 @@ public class Tabla : MonoBehaviour
 
     private void OnEnable()
     {
+        if (puntaciones.nombres.Contains(puntaciones.nombreActual))
+        {
+            int indice = Array.IndexOf(puntaciones.nombres, puntaciones.nombreActual);
+            if(puntaciones.puntacionActual > puntaciones.puntos[indice])
+                puntaciones.puntos[indice] = puntaciones.puntacionActual;
+        }
+        else
+        {
+            if (puntaciones.puntacionActual > puntaciones.puntos[5])
+            {
+                puntaciones.nombres[5] = puntaciones.nombreActual;
+                puntaciones.puntos[5] = puntaciones.puntacionActual;
+            }
+        }
+
         if (puntaciones.puntos[5] > puntaciones.puntos[4]) Cambiar(5, 4);
         if (puntaciones.puntos[4] > puntaciones.puntos[3]) Cambiar(4, 3);
         if (puntaciones.puntos[3] > puntaciones.puntos[2]) Cambiar(3, 2);

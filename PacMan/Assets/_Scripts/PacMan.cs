@@ -9,7 +9,7 @@ using UnityEngine.UI;
  */
 public class PacMan : MonoBehaviour
 {
-    new Rigidbody rigidbody;
+    Rigidbody rigidbody;
     Vector2 inputMov, inputRot;
     float caminar = 15f, sensibilidadMouse = 5f, rotacionX;
     Transform camara;
