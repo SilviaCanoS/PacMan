@@ -24,6 +24,6 @@ public class FantasmaRojo : Fantasma
     private void FixedUpdate()
     {
         puntosRestantes = puntos.childCount;
-        if (puntosRestantes < referenciaPuntos) nav.speed += 1;
+        if (puntosRestantes < referenciaPuntos) nav.speed += .5f;
     }
 }
