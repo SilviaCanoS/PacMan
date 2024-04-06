@@ -53,6 +53,8 @@ public class Fantasma : MonoBehaviour
             aux.GetComponent<MeshRenderer>().material = azulMarino;
             aux = gameObject.transform.GetChild(1);
             aux.GetComponent<MeshRenderer>().material = azulMarino;
+            aux = gameObject.transform.GetChild(6);
+            aux.GetComponent<MeshRenderer>().material = azulMarino;
 
             Invoke("DevolverColor", 10);
         }
@@ -83,6 +85,8 @@ public class Fantasma : MonoBehaviour
         var aux = gameObject.transform.GetChild(0);
         aux.GetComponent<MeshRenderer>().material = color;
         aux = gameObject.transform.GetChild(1);
+        aux.GetComponent<MeshRenderer>().material = color;
+        aux = gameObject.transform.GetChild(6);
         aux.GetComponent<MeshRenderer>().material = color;
     }
 }

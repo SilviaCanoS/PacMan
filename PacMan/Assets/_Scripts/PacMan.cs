@@ -11,7 +11,7 @@ public class PacMan : MonoBehaviour
 {
     Rigidbody rigidbody;
     Vector2 inputMov, inputRot;
-    float caminar = 15f, sensibilidadMouse = 5f, rotacionX;
+    float caminar = 15f, sensibilidadMouse = 2.55f, rotacionX;
     Transform camara;
 
     GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul, sonidoComeFantasma,
