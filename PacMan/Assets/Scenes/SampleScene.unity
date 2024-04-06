@@ -1578,14 +1578,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntuacion: 0
-  vidas: 2
+  vidas: 3
   ref1up: 1000
   transformPuntuacion: {fileID: 553681968}
   textPuntuacion: {fileID: 553681969}
   puntaciones: {fileID: 11400000, guid: 4b1a9e7a9d7cab24c88d305a742ab68a, type: 2}
-  vida1: {fileID: 423246101}
+  vida1: {fileID: 1877139920}
   vida2: {fileID: 253159441}
-  vida3: {fileID: 1877139920}
+  vida3: {fileID: 423246101}
   vida4: {fileID: 445954049}
   vida5: {fileID: 1982817391}
   canvasGanar: {fileID: 1386520898}
@@ -4867,8 +4867,8 @@ RectTransform:
   - {fileID: 553681968}
   - {fileID: 1773857437}
   - {fileID: 1855785081}
-  - {fileID: 1347736620}
   - {fileID: 1123248537}
+  - {fileID: 1347736620}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35714,7 +35714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1123248537
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35728,12 +35728,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 197408110}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 310, y: -135}
-  m_SizeDelta: {x: 220, y: 220}
+  m_AnchoredPosition: {x: 302, y: -130}
+  m_SizeDelta: {x: 221, y: 221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1123248538
 MonoBehaviour:
@@ -41993,7 +41993,7 @@ RectTransform:
   m_Children:
   - {fileID: 1102866052}
   m_Father: {fileID: 197408110}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -9,6 +9,11 @@ public class Principal : MonoBehaviour
         canvasGanar, canvasAvanzar;
     public Puntaciones puntaciones;
 
+    private void Start()
+    {
+        puntaciones.efectoAzul = false;
+    }
+
     private void Update()
     {
         if(Input.GetKey(KeyCode.Space)) MostrarPausa();
