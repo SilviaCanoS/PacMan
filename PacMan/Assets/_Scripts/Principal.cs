@@ -87,11 +87,7 @@ public class Principal : MonoBehaviour
 
     public void ReiniciarNivel()
     {
-        if (puntaciones.puntacionActual > puntaciones.puntos[5])
-        {
-            puntaciones.puntos[5] = puntaciones.puntacionActual;
-            puntaciones.nombres[5] = puntaciones.nombreActual;
-        }
+        canvasPuntuacion.SetActive(true);
         puntaciones.puntacionActual = 0;
         Time.timeScale = 1;
         SceneManager.LoadScene(0);

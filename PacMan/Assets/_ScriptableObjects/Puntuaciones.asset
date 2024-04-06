@@ -16,14 +16,14 @@ MonoBehaviour:
   congelar: 0
   muerte: 0
   avanzar: 0
-  puntacionActual: 920
-  nombreActual: Jugador
+  puntacionActual: 1450
+  nombreActual: Silvi
   nombres:
+  - Silvi
   - Jugador1
   - Jugador2
   - Jugador3
   - Jugador4
   - Jugador5
-  - Jugador
-  puntos: 00000000000000000000000000000000000000006a0e0000
+  puntos: 680100000000000000000000000000000000000000000000
   nivelDificultad: 1
