@@ -9,6 +9,7 @@ public class FantasmaRojo : Fantasma
 {
     public float referenciaPuntos, puntosRestantes;
     public Transform puntos;
+    public bool aumentarVelocidad = true;
 
     private void Awake()
     {
@@ -24,6 +25,13 @@ public class FantasmaRojo : Fantasma
     private void FixedUpdate()
     {
         puntosRestantes = puntos.childCount;
-        if (puntosRestantes < referenciaPuntos) nav.speed += .5f;
+        if (puntosRestantes < referenciaPuntos)
+        {
+            if (aumentarVelocidad)
+            {
+                nav.speed += 1;
+                aumentarVelocidad = false;
+            }
+        }
     }
 }

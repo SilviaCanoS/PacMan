@@ -6,31 +6,66 @@ using UnityEngine.UI;
 
 public class Inicio : MonoBehaviour
 {
-    public TMPro.TMP_InputField inputNombre;
     public Puntaciones puntaciones;
-    public GameObject cambio;
+    public GameObject canvasAjustes, canvasInicio, canvasControles, canvasTabla;
+
+    public void MostrarAjustes()
+    {
+        canvasInicio.SetActive(false);
+        canvasAjustes.SetActive(true);
+    }
+
+    public void OcultarAjustes()
+    {
+        canvasInicio.SetActive(true);
+        canvasAjustes.SetActive(false);
+    }
+
+    public void MostrarControles()
+    {
+        canvasControles.SetActive(true);
+        canvasAjustes.SetActive(false);
+    }
+
+    public void OcultarControles()
+    {
+        canvasControles.SetActive(false);
+        canvasAjustes.SetActive(true);
+    }
+
+    public void MostrarTabla()
+    {
+        canvasTabla.SetActive(true);
+        canvasAjustes.SetActive(false);
+    }
+
+    public void OcultarTabla()
+    {
+        canvasTabla.SetActive(false);
+        canvasAjustes.SetActive(true);
+    }
 
     public void Iniciar()
     {
         SceneManager.LoadScene(1);
     }
 
-    public void CambiarNombre()
-    {
-        puntaciones.nombreActual = inputNombre.text;
-        puntaciones.puntacionActual = 0;
+    //public void CambiarNombre()
+    //{
+    //    puntaciones.nombreActual = inputNombre.text;
+    //    puntaciones.puntacionActual = 0;
 
-        if(puntaciones.nombreActual == inputNombre.text )
-        {
-            cambio.SetActive(true);
-            Invoke("OcultarCambio", 2);
-        }
-    }
+    //    if(puntaciones.nombreActual == inputNombre.text )
+    //    {
+    //        cambio.SetActive(true);
+    //        Invoke("OcultarCambio", 2);
+    //    }
+    //}
 
-    public void OcultarCambio()
-    {
-        cambio.SetActive(false);
-    }
+    //public void OcultarCambio()
+    //{
+    //    cambio.SetActive(false);
+    //}
 
     public void Salir()
     {

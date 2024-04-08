@@ -95,6 +95,15 @@ public class Principal : MonoBehaviour
         canvasPuntuacion.SetActive(true);
         puntaciones.puntacionActual = 0;
         Time.timeScale = 1;
+        int escenaActual = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(escenaActual);
+    }
+
+    public void ReiniciarJuego()
+    {
+        canvasPuntuacion.SetActive(true);
+        puntaciones.puntacionActual = 0;
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 }
