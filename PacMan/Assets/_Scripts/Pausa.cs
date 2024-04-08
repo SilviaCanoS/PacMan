@@ -30,7 +30,7 @@ public class Pausa : MonoBehaviour
         textTitulo.text = $"¡Hola, {puntaciones.nombreActual}!";
 
         Time.timeScale = 1;
-        int escenaActual = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(escenaActual);
+
+        if (SceneManager.GetActiveScene().buildIndex != 0) SceneManager.LoadScene(1);
     }
 }

@@ -19,15 +19,13 @@ public class PacMan : MonoBehaviour
     AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul,
         sourceComeFantasma, sourceGanar, sourceFruta, sourcePerder;
 
-    public int puntuacion = 0, vidas, ref1up = 1000;
+    public int puntuacion = 0, ref1up = 1000;
     public Transform transformPuntuacion;
     public TMPro.TMP_Text textPuntuacion;
     public Puntaciones puntaciones;
 
     public GameObject vida1, vida2, vida3, vida4, vida5, canvasGanar, cerezaPrefab, cereza, fresaPrefab,
         fresa, manzanaPrefab, manzana, mandarinaPrefab, mandarina;
-
-    public bool efectoAzulActivado;
 
     public Transform puntos, control;
 
@@ -47,7 +45,7 @@ public class PacMan : MonoBehaviour
      */
     private void Start()
     {
-        vidas = 3;
+        puntaciones.vidasPacMan = 3;
         CanvasVidas();
 
         transformPuntuacion = GameObject.Find("TextPuntuacion").transform;
@@ -93,6 +91,8 @@ public class PacMan : MonoBehaviour
 
         inputRot.x = Input.GetAxis("Horizontal") * sensibilidadMouse;
         inputRot.y = Input.GetAxis("Mouse Y") * sensibilidadMouse;
+
+        nuevaVida();
     }
 
     /**Actualiza la posición y rotación de PacMan segun las entradas del jugador
@@ -118,7 +118,7 @@ public class PacMan : MonoBehaviour
         if (collision.gameObject.CompareTag("Rojo") || collision.gameObject.CompareTag("Rosa") || 
             collision.gameObject.CompareTag("Azul") || collision.gameObject.CompareTag("Naranja"))
         {
-            if (efectoAzulActivado)
+            if (puntaciones.efectoAzul)
             {
                 sourceComeFantasma.Play();
                 if (puntaciones.nivelDificultad == Puntaciones.Dificultad.facil) puntuacion += 100;
@@ -129,20 +129,8 @@ public class PacMan : MonoBehaviour
             }
             else
             {
-                gameObject.transform.position = new Vector3(-23.5f, 10f, 1f);
-                vidas--;
-                if(vidas == 0)
-                {
-                    puntaciones.muerte = true;
-                    sourcePerder.Play();
-                }
-                else if(vidas > 0)
-                {
-                    sourcePacManMuere.Play();
-                    sourceIniciarJuego.Play();
-                    gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
-                }
-                CanvasVidas();
+                puntaciones.gastarVida = true;
+                
             }
         }
     }
@@ -183,7 +171,6 @@ public class PacMan : MonoBehaviour
             cereza = Instantiate<GameObject>(cerezaPrefab, cerezasCoord[Random.Range(0, 4)],
                     Quaternion.identity);
 
-            efectoAzulActivado = true;
             puntaciones.efectoAzul = true;
             sourceEfectoAzul.Play();
             Invoke("DevolverColor", 10);
@@ -215,7 +202,7 @@ public class PacMan : MonoBehaviour
         else if (other.CompareTag("Cereza"))
         {
             sourceFruta.Play();
-            if (vidas < 5) vidas++;
+            if (puntaciones.vidasPacMan < 5) puntaciones.vidasPacMan++;
             CanvasVidas();
             Destroy(other.gameObject);
         }
@@ -253,7 +240,6 @@ public class PacMan : MonoBehaviour
     public void DevolverColor()
     {
         sourceEfectoAzul.Stop();
-        efectoAzulActivado = false;
         puntaciones.efectoAzul = false;
 
         Invoke("DestruirCereza", 10);
@@ -270,7 +256,7 @@ public class PacMan : MonoBehaviour
         //Consigue 1up cada 1000 puntos
         if (puntaciones.puntacionActual >= ref1up)
         {
-            if (vidas < 5) vidas++;
+            if (puntaciones.vidasPacMan < 5) puntaciones.vidasPacMan++;
             CanvasVidas();
             ref1up += 1000;
         }
@@ -351,7 +337,7 @@ public class PacMan : MonoBehaviour
      */
     public void CanvasVidas()
     {
-        switch (vidas)
+        switch (puntaciones.vidasPacMan)
         {
             case 1:
                 vida1.GetComponent<Image>().color = Color.black;
@@ -391,6 +377,29 @@ public class PacMan : MonoBehaviour
                 vida5.SetActive(true);
                 break;
             default: break;
+        }
+    }
+
+    /**Cada vez que PacMan muere y aun tiene vidas disponibles se llama esta funcion
+     */
+    public void nuevaVida()
+    {
+        if (puntaciones.gastarVida)
+        {
+            puntaciones.vidasPacMan--;
+            if (puntaciones.vidasPacMan == 0)
+            {
+                puntaciones.muerte = true;
+                sourcePerder.Play();
+            }
+            else if (puntaciones.vidasPacMan > 0)
+            {
+                sourcePacManMuere.Play();
+                sourceIniciarJuego.Play();
+                gameObject.transform.position = new Vector3(-23.5f, -0.5f, 1f);
+            }
+            CanvasVidas();
+            puntaciones.gastarVida = false;
         }
     }
 }

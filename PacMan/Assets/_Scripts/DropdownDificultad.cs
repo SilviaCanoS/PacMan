@@ -16,8 +16,7 @@ public class DropdownDificultad : MonoBehaviour
         dropdown.value = (int)puntaciones.nivelDificultad;
         dropdown.onValueChanged.AddListener(delegate {
             puntaciones.CambiarDificultad(dropdown.value);
-            Time.timeScale = 1;
-            SceneManager.LoadScene(0);
+            IdentificarNivel();
         });
     }
 
