@@ -15,9 +15,9 @@ public class PacMan : MonoBehaviour
     Transform camara;
 
     GameObject sonidoComerPuntos, sonidoIniciarJuego, sonidoPacManMuere, sonidoEfectoAzul, sonidoComeFantasma,
-        sonidoGanar, sonidoFruta, sonidoPerder;
+        sonidoGanar, sonidoFruta, sonidoPerder, sonido1up, sonidoVeneno;
     AudioSource sourceComerPuntos, sourceIniciarJuego, sourcePacManMuere, sourceEfectoAzul,
-        sourceComeFantasma, sourceGanar, sourceFruta, sourcePerder;
+        sourceComeFantasma, sourceGanar, sourceFruta, sourcePerder, source1up, sourceVeneno;
 
     public int puntuacion = 0, ref1up = 1000;
     public Transform transformPuntuacion;
@@ -74,6 +74,10 @@ public class PacMan : MonoBehaviour
         sourceFruta = sonidoFruta.GetComponent<AudioSource>();
         sonidoPerder = GameObject.Find("Perder");
         sourcePerder = sonidoPerder.GetComponent<AudioSource>();
+        sonido1up = GameObject.Find("VidaExtra");
+        source1up = sonido1up.GetComponent<AudioSource>();
+        sonidoVeneno = GameObject.Find("PerderPuntos");
+        sourceVeneno = sonidoVeneno.GetComponent<AudioSource>();
 
         puntos = GameObject.Find("Puntos").transform;
         control = GameObject.Find("Control").transform;
@@ -181,7 +185,7 @@ public class PacMan : MonoBehaviour
 
         else if (other.CompareTag("PuntoVere"))
         {
-            sourceComerPuntos.Play();
+            sourceVeneno.Play();
             puntuacion -= 100;
             CambiarPuntuacion();
 
@@ -202,7 +206,11 @@ public class PacMan : MonoBehaviour
         else if (other.CompareTag("Cereza"))
         {
             sourceFruta.Play();
-            if (puntaciones.vidasPacMan < 5) puntaciones.vidasPacMan++;
+            if (puntaciones.vidasPacMan < 5)
+            {
+                puntaciones.vidasPacMan++;
+                source1up.Play();
+            }
             CanvasVidas();
             Destroy(other.gameObject);
         }
@@ -256,7 +264,11 @@ public class PacMan : MonoBehaviour
         //Consigue 1up cada 1000 puntos
         if (puntaciones.puntacionActual >= ref1up)
         {
-            if (puntaciones.vidasPacMan < 5) puntaciones.vidasPacMan++;
+            if (puntaciones.vidasPacMan < 5)
+            {
+                puntaciones.vidasPacMan++;
+                source1up.Play();
+            }
             CanvasVidas();
             ref1up += 1000;
         }
@@ -386,7 +398,7 @@ public class PacMan : MonoBehaviour
     {
         if (puntaciones.gastarVida)
         {
-            puntaciones.vidasPacMan--;
+            if(puntaciones.vidasPacMan > 0) puntaciones.vidasPacMan--;
             if (puntaciones.vidasPacMan == 0)
             {
                 puntaciones.muerte = true;
