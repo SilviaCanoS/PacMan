@@ -98,8 +98,8 @@ MonoBehaviour:
     overrideState: 1
     value: 0.75
   size:
-    overrideState: 0
-    value: 0.96
+    overrideState: 1
+    value: 1.73
   lumContrib:
     overrideState: 0
     value: 0

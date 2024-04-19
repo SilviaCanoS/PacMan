@@ -47,13 +47,11 @@ public class Fantasma : MonoBehaviour
 
         if (puntaciones.efectoAzul)
         {
-            GetComponent<NavMeshAgent>().destination = new Vector3(coordenadaX, 0, 0.9f);
+            GetComponent<NavMeshAgent>().destination = new Vector3(coordenadaX, -1.24f, 0.9f);
 
-            var aux = gameObject.transform.GetChild(0);
+            var aux = gameObject.transform.GetChild(4);
             aux.GetComponent<MeshRenderer>().material = azulMarino;
-            aux = gameObject.transform.GetChild(1);
-            aux.GetComponent<MeshRenderer>().material = azulMarino;
-            aux = gameObject.transform.GetChild(6);
+            aux = gameObject.transform.GetChild(5); //indicador
             aux.GetComponent<MeshRenderer>().material = azulMarino;
 
             Invoke("DevolverColor", 10);
@@ -82,11 +80,9 @@ public class Fantasma : MonoBehaviour
 
     public void DevolverColor()
     {
-        var aux = gameObject.transform.GetChild(0);
+        var aux = gameObject.transform.GetChild(4);
         aux.GetComponent<MeshRenderer>().material = color;
-        aux = gameObject.transform.GetChild(1);
-        aux.GetComponent<MeshRenderer>().material = color;
-        aux = gameObject.transform.GetChild(6);
+        aux = gameObject.transform.GetChild(5);//indicador
         aux.GetComponent<MeshRenderer>().material = color;
     }
 }

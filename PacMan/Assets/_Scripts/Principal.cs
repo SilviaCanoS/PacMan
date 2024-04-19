@@ -8,6 +8,7 @@ public class Principal : MonoBehaviour
     public GameObject canvasPrincipal, canvasPausa, canvasPuntuacion, canvasControles, canvasPerder, 
         canvasGanar, canvasAvanzar;
     public Puntaciones puntaciones;
+    public GameObject audioSource;
 
     private void Start()
     {
@@ -17,6 +18,9 @@ public class Principal : MonoBehaviour
     private void Update()
     {
         if(Input.GetKey(KeyCode.Space)) MostrarPausa();
+
+        if(canvasPrincipal.activeSelf) audioSource.SetActive(true);
+        else audioSource.SetActive(false);
 
         if (puntaciones.muerte)
         {

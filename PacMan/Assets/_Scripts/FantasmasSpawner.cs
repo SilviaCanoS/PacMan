@@ -9,10 +9,10 @@ public class FantasmasSpawner : MonoBehaviour
 
     private void Start()
     {
-        rojo = GameObject.Find("Fantasma Rojo");
-        rosa = GameObject.Find("Fantasma Rosa");
-        azul = GameObject.Find("Fantasma Azul");
-        naranja = GameObject.Find("Fantasma Naranja");
+        rojo = GameObject.Find("RojoModelo");
+        rosa = GameObject.Find("RosaModelo");
+        azul = GameObject.Find("AzulModelo");
+        naranja = GameObject.Find("NaranjaModelo");
     }
 
     private void Update()
